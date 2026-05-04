@@ -1,0 +1,425 @@
+/* ============================================
+   NIKKYSPADE — GLOBAL DESIGN SYSTEM
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* === CSS CUSTOM PROPERTIES === */
+:root {
+  /* Color Palette */
+  --cream: #E2D1C2;
+  --sand: #D4BBAC;
+  --light-brown: #98755B;
+  --nut-brown: #5C3422;
+  --dark-choc: #442913;
+
+  /* Derived colors */
+  --cream-light: #EDE3D8;
+  --nut-brown-dark: #4a2a1b;
+  --light-brown-light: #b08f78;
+  --sand-light: #DED0C3;
+  --dark-choc-light: #6b4528;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: 100px 0;
+  --section-padding-sm: 60px 0;
+  --container-max: 1200px;
+  --container-padding: 0 48px;
+  --container-padding-mobile: 0 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(68, 41, 19, 0.08);
+  --shadow-md: 0 8px 30px rgba(68, 41, 19, 0.12);
+  --shadow-lg: 0 20px 60px rgba(68, 41, 19, 0.16);
+  --shadow-hover: 0 16px 48px rgba(68, 41, 19, 0.2);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--dark-choc);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--dark-choc);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+h4 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--dark-choc-light);
+}
+
+/* === LAYOUT UTILITIES === */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+.section--sand {
+  background-color: var(--sand);
+}
+
+.section--cream-light {
+  background-color: var(--cream-light);
+}
+
+.section--dark {
+  background-color: var(--dark-choc);
+  color: var(--cream);
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4 {
+  color: var(--cream);
+}
+
+.section--dark p {
+  color: var(--sand);
+}
+
+/* === SECTION LABELS === */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--light-brown);
+  background: rgba(152, 117, 91, 0.12);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.section-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--light-brown);
+}
+
+/* === BUTTONS === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  padding: 14px 34px;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--nut-brown);
+  color: var(--cream);
+  box-shadow: 0 4px 20px rgba(92, 52, 34, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--nut-brown-dark);
+  box-shadow: 0 8px 30px rgba(92, 52, 34, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--nut-brown);
+  border: 1.5px solid var(--nut-brown);
+}
+
+.btn-outline:hover {
+  background: var(--nut-brown);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background-color: var(--cream);
+  color: var(--nut-brown);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-light:hover {
+  background-color: var(--cream-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(226, 209, 194, 0.5);
+}
+
+.btn-outline-light:hover {
+  background: rgba(226, 209, 194, 0.15);
+  border-color: var(--cream);
+  transform: translateY(-2px);
+}
+
+/* === CARDS === */
+.card {
+  background: var(--cream-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* === GRID === */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* === SECTION HEADER === */
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-header--center {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.section-header h2 {
+  margin-bottom: 20px;
+}
+
+.section-header p {
+  font-size: 1.05rem;
+}
+
+/* === DIVIDER === */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--light-brown), transparent);
+  margin: 24px 0;
+}
+
+.divider--center {
+  margin: 24px auto;
+}
+
+/* === SCROLL ANIMATION === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* === HIGHLIGHT ACCENT TEXT === */
+.accent {
+  color: var(--light-brown);
+}
+
+.accent-nut {
+  color: var(--nut-brown);
+}
+
+/* === BADGE === */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(152, 117, 91, 0.15);
+  color: var(--light-brown);
+}
+
+.badge--digital {
+  background: rgba(92, 52, 34, 0.1);
+  color: var(--nut-brown);
+}
+
+.badge--interior {
+  background: rgba(152, 117, 91, 0.15);
+  color: var(--light-brown);
+}
+
+/* === TESTIMONIAL QUOTE MARK === */
+.quote-mark {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  line-height: 0.5;
+  color: var(--light-brown);
+  opacity: 0.25;
+}
+
+/* === PAGE HERO (shared) === */
+.page-hero {
+  padding: 160px 0 80px;
+  background: linear-gradient(135deg, var(--cream-light) 0%, var(--sand) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(152, 117, 91, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 0 32px;
+  }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 70px 0;
+    --container-padding: 0 20px;
+  }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+}
+
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .btn { padding: 12px 24px; font-size: 0.85rem; }
+}

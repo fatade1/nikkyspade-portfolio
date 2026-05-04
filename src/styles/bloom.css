@@ -1,0 +1,322 @@
+/* ===========================
+   BLOOM INTERIORS PAGE STYLES
+   =========================== */
+
+/* HERO */
+.bloom-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+
+.bloom-hero__image-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.bloom-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.bloom-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(68, 41, 19, 0.95) 0%,
+    rgba(68, 41, 19, 0.7) 40%,
+    rgba(68, 41, 19, 0.4) 100%
+  );
+}
+
+.bloom-hero__content {
+  position: relative;
+  z-index: 1;
+  padding-top: 140px;
+}
+
+.bloom-hero__title {
+  color: var(--cream);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  max-width: 760px;
+  margin-bottom: 24px;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.bloom-hero__title em {
+  font-style: italic;
+  color: var(--sand);
+}
+
+.bloom-hero__sub {
+  color: var(--sand);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin-bottom: 40px;
+}
+
+.bloom-hero__btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* SERVICE GROUPS */
+.bloom-service-group {
+  margin-bottom: 48px;
+  background: var(--cream-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.bloom-service-group__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, var(--light-brown), var(--nut-brown));
+}
+
+.bloom-service-group__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(226, 209, 194, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+
+.bloom-service-group__title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.bloom-service-group__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(152, 117, 91, 0.1);
+}
+
+.bloom-service-item {
+  display: flex;
+  gap: 14px;
+  padding: 28px;
+  background: var(--cream-light);
+  transition: var(--transition);
+}
+
+.bloom-service-item:hover {
+  background: var(--cream);
+}
+
+.bloom-service-item__check {
+  color: var(--light-brown);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bloom-service-item__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-choc);
+  font-family: var(--font-heading);
+  margin-bottom: 8px;
+}
+
+.bloom-service-item__desc {
+  font-size: 0.85rem;
+  color: var(--dark-choc-light);
+  line-height: 1.65;
+}
+
+/* PROJECTS */
+.bloom-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.bloom-project-card {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.bloom-project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bloom-project-card__img-wrap {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.bloom-project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.bloom-project-card:hover .bloom-project-card__img {
+  transform: scale(1.06);
+}
+
+.bloom-project-card__type {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--light-brown);
+  color: var(--cream);
+}
+
+.bloom-project-card__body {
+  padding: 28px;
+}
+
+.bloom-project-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--dark-choc);
+  margin-bottom: 20px;
+}
+
+.bloom-project-card__section {
+  margin-bottom: 16px;
+}
+
+.bloom-project-card__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--light-brown);
+  margin-bottom: 6px;
+}
+
+.bloom-project-card__section p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.bloom-project-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bloom-project-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.83rem;
+  color: var(--dark-choc-light);
+  line-height: 1.5;
+}
+
+.bloom-project-card__list li svg {
+  color: var(--light-brown);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bloom-project-card__result-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--light-brown);
+  background: rgba(152, 117, 91, 0.1);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.bloom-project-card__result-text {
+  font-size: 0.82rem;
+  color: var(--dark-choc-light);
+  font-style: italic;
+}
+
+/* BEFORE & AFTER */
+.bloom-ba {
+  background: var(--cream);
+}
+
+.bloom-ba__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.bloom-ba__content p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.bloom-ba__image-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.bloom-ba__image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.bloom-ba__label {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(68, 41, 19, 0.8);
+  color: var(--cream);
+  backdrop-filter: blur(4px);
+}
+
+.bloom-ba__label--before {
+  left: 20px;
+}
+
+.bloom-ba__label--after {
+  right: 20px;
+  background: var(--light-brown);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .bloom-service-group__grid { grid-template-columns: 1fr; }
+  .bloom-projects__grid { grid-template-columns: 1fr; }
+  .bloom-ba__inner { grid-template-columns: 1fr; gap: 40px; }
+}
