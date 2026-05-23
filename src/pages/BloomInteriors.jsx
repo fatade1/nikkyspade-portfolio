@@ -110,38 +110,28 @@ export default function BloomInteriors() {
           <p className="bloom-hero__sub fade-in">Residential and commercial interior design, crafted with warmth, intention, and an eye for timeless elegance.</p>
           <div className="bloom-hero__btns fade-in">
             <Link to="/contact" className="btn btn-light" id="bloom-consult-btn">Book a Design Consultation <ArrowRight size={16} /></Link>
-            <a href="#bloom-projects" className="btn btn-outline-light" id="bloom-portfolio-btn">View Projects</a>
+            <a href="#bloom-before-after" className="btn btn-outline-light" id="bloom-portfolio-btn">View Transformations</a>
           </div>
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section className="bloom-services section" id="bloom-services">
+      {/* BEFORE & AFTER */}
+      <section className="bloom-ba section" id="bloom-before-after">
         <div className="container">
-          <div className="section-header--center fade-in">
-            <h2>Design services for every space</h2>
-            <p>From concept to completion, The Bloom Interiors offers a full suite of design services for residential and commercial clients.</p>
-          </div>
-
-          {SERVICE_GROUPS.map((group, gi) => (
-            <div key={group.cat} className="bloom-service-group fade-in" style={{ transitionDelay: `${gi * 0.1}s` }}>
-              <div className="bloom-service-group__header">
-                <div className="bloom-service-group__icon">{group.icon}</div>
-                <h3 className="bloom-service-group__title">{group.cat}</h3>
-              </div>
-              <div className="bloom-service-group__grid">
-                {group.services.map(s => (
-                  <div className="bloom-service-item" key={s.name}>
-                    <CheckCircle size={16} className="bloom-service-item__check" />
-                    <div>
-                      <h4 className="bloom-service-item__name">{s.name}</h4>
-                      <p className="bloom-service-item__desc">{s.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="bloom-ba__inner">
+            <div className="bloom-ba__content fade-in-left">
+              <h2>See the difference The Bloom Interiors makes</h2>
+              <div className="divider" />
+              <p>Every project begins with a space that has potential, and ends with a space that has purpose. Our before & after transformations speak louder than words.</p>
+              <p style={{ marginTop: '16px' }}>From cluttered rooms to curated interiors, we handle every detail of the transformation journey.</p>
+              <Link to="/contact" className="btn btn-primary" style={{ marginTop: '32px' }} id="bloom-ba-cta">Start Your Transformation <ArrowRight size={16} /></Link>
             </div>
-          ))}
+            <div className="bloom-ba__image-wrap fade-in-right">
+              <img src={beforeAfterImg} alt="Before and after interior transformation" className="bloom-ba__image" />
+              <div className="bloom-ba__label bloom-ba__label--before">Before</div>
+              <div className="bloom-ba__label bloom-ba__label--after">After</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -189,23 +179,33 @@ export default function BloomInteriors() {
         </div>
       </section>
 
-      {/* BEFORE & AFTER */}
-      <section className="bloom-ba section" id="bloom-before-after">
+      {/* SERVICES */}
+      <section className="bloom-services section" id="bloom-services">
         <div className="container">
-          <div className="bloom-ba__inner">
-            <div className="bloom-ba__content fade-in-left">
-              <h2>See the difference The Bloom Interiors makes</h2>
-              <div className="divider" />
-              <p>Every project begins with a space that has potential, and ends with a space that has purpose. Our before & after transformations speak louder than words.</p>
-              <p style={{ marginTop: '16px' }}>From cluttered rooms to curated interiors, we handle every detail of the transformation journey.</p>
-              <Link to="/contact" className="btn btn-primary" style={{ marginTop: '32px' }} id="bloom-ba-cta">Start Your Transformation <ArrowRight size={16} /></Link>
-            </div>
-            <div className="bloom-ba__image-wrap fade-in-right">
-              <img src={beforeAfterImg} alt="Before and after interior transformation" className="bloom-ba__image" />
-              <div className="bloom-ba__label bloom-ba__label--before">Before</div>
-              <div className="bloom-ba__label bloom-ba__label--after">After</div>
-            </div>
+          <div className="section-header--center fade-in">
+            <h2>Design services for every space</h2>
+            <p>From concept to completion, The Bloom Interiors offers a full suite of design services for residential and commercial clients.</p>
           </div>
+
+          {SERVICE_GROUPS.map((group, gi) => (
+            <div key={group.cat} className="bloom-service-group fade-in" style={{ transitionDelay: `${gi * 0.1}s` }}>
+              <div className="bloom-service-group__header">
+                <div className="bloom-service-group__icon">{group.icon}</div>
+                <h3 className="bloom-service-group__title">{group.cat}</h3>
+              </div>
+              <div className="bloom-service-group__grid">
+                {group.services.map(s => (
+                  <div className="bloom-service-item" key={s.name}>
+                    <CheckCircle size={16} className="bloom-service-item__check" />
+                    <div>
+                      <h4 className="bloom-service-item__name">{s.name}</h4>
+                      <p className="bloom-service-item__desc">{s.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
