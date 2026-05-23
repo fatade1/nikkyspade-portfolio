@@ -32,7 +32,7 @@ function useScrollFade() {
 
 const DIGITAL_SERVICES = [
   { icon: <Share2 size={22} />, title: 'Social Media Management', desc: 'Strategy, content calendars, engagement growth, and community management across platforms.' },
-  { icon: <TrendingUp size={22} />, title: 'Paid Advertising', desc: 'Targeted Meta Ads campaigns that drive real results — awareness, leads, and conversions.' },
+  { icon: <TrendingUp size={22} />, title: 'Paid Advertising', desc: 'Targeted Meta Ads campaigns that drive real results: awareness, leads, and conversions.' },
   { icon: <Layout size={22} />, title: 'Content Strategy', desc: 'Storytelling-driven content that builds authority, grows audiences, and converts.' },
 ];
 
@@ -43,14 +43,14 @@ const INTERIOR_SERVICES = [
 ];
 
 const PORTFOLIO_ITEMS = [
-  { img: brandGrowthImg, cat: 'Digital Marketing', title: 'Personal Brand Growth', desc: 'Content strategy & social media management for a business coach.', result: '+120% Engagement' },
-  { img: livingRoomImg, cat: 'Interior Design', title: 'Living Room Transformation', desc: 'Modern redesign with neutral palette, upgraded lighting and furniture.', result: 'Full Transformation' },
-  { img: dashboardImg, cat: 'Digital Marketing', title: 'Product Launch Campaign', desc: 'Built a full 2-week Meta Ads campaign for a beauty brand launch.', result: 'High-Impact Launch' },
+  { img: '/images/portfolio/bungalow/img_1.png', cat: 'Scratch to Finish', title: '4-Bedroom Bungalow Interior', desc: 'Complete interior layout, custom styling, and procurement for a spacious modern home.', result: 'Full Home' },
+  { img: '/images/portfolio/flat/img_1.png', cat: 'Living & Bed', title: '2-Bedroom Flat Redesign', desc: 'Serene contemporary space optimization and aesthetic styling for cozy comfort.', result: 'Living & Bed' },
+  { img: '/images/portfolio/hairstore/img_1.png', cat: 'Renovation', title: 'Hair Store Renovation', desc: 'Full retail renovation and furnishing including custom shelving, custom finishes, and lighting.', result: 'Renovation' },
 ];
 
 const TESTIMONIALS = [
   { text: 'NikkyTales completely transformed how I show up online. My engagement tripled in just 6 weeks and I started getting real inquiries from dream clients.', name: 'Amaka O.', role: 'Business Coach', init: 'A' },
-  { text: 'The Bloom Interiors gave me the living room I always dreamed of. Every detail was handled with such care and elegance — totally exceeded expectations.', name: 'Chidi B.', role: 'Homeowner', init: 'C' },
+  { text: 'The Bloom Interiors gave me the living room I always dreamed of. Every detail was handled with such care and elegance, totally exceeding expectations.', name: 'Chidi B.', role: 'Homeowner', init: 'C' },
   { text: 'She understands brands deeply. My product launch was a massive success thanks to her strategy and the incredible content she created.', name: 'Funmi A.', role: 'Beauty Brand Founder', init: 'F' },
 ];
 
@@ -75,7 +75,7 @@ export default function Home() {
           </h1>
 
           <p className="hero__sub">
-            I'm Nikkyspade — helping brands grow digitally while creating beautiful, functional spaces that inspire and delight.
+            I'm Nikkyspade, helping brands grow digitally while creating beautiful, functional spaces that inspire and delight.
           </p>
 
           <div className="hero__ctas">
@@ -104,7 +104,7 @@ export default function Home() {
         </div>
 
         <div className="hero__visual">
-          <img src={heroImg} alt="Nikkyspade — Creative Entrepreneur" className="hero__image" />
+          <img src={heroImg} alt="Nikkyspade - Creative Entrepreneur" className="hero__image" />
           <div className="hero__image-overlay" />
         </div>
 
@@ -119,7 +119,6 @@ export default function Home() {
         <div className="container">
           <div className="intro__inner">
             <div className="intro__text fade-in-left">
-              <span className="section-label">About Nikkyspade</span>
               <h2>Where digital strategy meets design excellence</h2>
               <div className="divider" />
               <p>
@@ -157,9 +156,8 @@ export default function Home() {
       <section className="brands section" id="home-brands">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">My Brands</span>
             <h2>Two brands. One vision.</h2>
-            <p>Each brand serves a distinct purpose — but both share the same commitment to excellence, creativity, and real results.</p>
+            <p>Each brand serves a distinct purpose, but both share the same commitment to excellence, creativity, and real results.</p>
           </div>
 
           <div className="brands__grid">
@@ -199,14 +197,13 @@ export default function Home() {
         <div className="container">
           <div className="section-header fade-in" style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'16px' }}>
             <div>
-              <span className="section-label">What I Do</span>
               <h2>Services that make an impact</h2>
             </div>
             <Link to="/portfolio" className="btn btn-outline" id="home-view-all-btn">View All Work</Link>
           </div>
 
           <div style={{ marginBottom: '12px' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--light-brown)', marginBottom: '20px', letterSpacing: '0.05em' }}>NikkyTales — Digital</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--light-brown)', marginBottom: '20px', letterSpacing: '0.05em' }}>NikkyTales: Digital</h3>
             <div className="services-grid fade-in">
               {DIGITAL_SERVICES.map(s => (
                 <div className="service-card" key={s.title}>
@@ -237,9 +234,8 @@ export default function Home() {
       <section className="portfolio-preview section section--sand" id="home-portfolio">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Selected Work</span>
             <h2>Projects I'm proud of</h2>
-            <p>A glimpse into the digital campaigns and interior transformations I've delivered for clients.</p>
+            <p>A glimpse into the interior transformations I've delivered for clients.</p>
           </div>
 
           <div className="portfolio-preview__scroll">
@@ -268,7 +264,6 @@ export default function Home() {
       <section className="testimonials-preview section" id="home-testimonials">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Client Love</span>
             <h2>What my clients say</h2>
             <p>Real words from real people who trusted me with their brands and spaces.</p>
           </div>
@@ -297,9 +292,8 @@ export default function Home() {
       {/* ====== CTA ====== */}
       <section className="home-cta" id="home-cta-section">
         <div className="container">
-          <span className="section-label" style={{ background: 'rgba(152,117,91,0.2)', color: 'var(--sand)' }}>Ready to Begin?</span>
           <h2 className="fade-in">Let's create something extraordinary together</h2>
-          <p className="fade-in">Whether you want to grow your brand online or transform your space — I'm here to make it happen beautifully.</p>
+          <p className="fade-in">Whether you want to grow your brand online or transform your space, I'm here to make it happen beautifully.</p>
           <div className="home-cta__btns fade-in">
             <Link to="/contact" className="btn btn-light" id="home-cta-contact">Book a Consultation</Link>
             <Link to="/portfolio" className="btn btn-outline-light" id="home-cta-portfolio">View My Work</Link>

@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingUp, Home as HomeIcon, ArrowRight } from 'lucide-react';
-import livingRoomImg from '../assets/images/living_room.png';
-import bedroomImg from '../assets/images/bedroom_styling.png';
-import officeImg from '../assets/images/office_space.png';
-import dashboardImg from '../assets/images/digital_dashboard.png';
-import contentMockupImg from '../assets/images/content_mockup.png';
-import brandGrowthImg from '../assets/images/brand_growth.png';
+import { X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import '../styles/portfolio.css';
 
-function useScrollFade(deps = []) {
+function useScrollFade() {
   useEffect(() => {
     const els = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
     const observer = new IntersectionObserver(
@@ -18,143 +12,134 @@ function useScrollFade(deps = []) {
     );
     els.forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, deps);
+  }, []);
 }
 
-const ALL_PROJECTS = [
+const INTERIOR_JOBS = [
   {
-    id: 1,
-    cat: 'digital',
-    catLabel: 'Digital Marketing',
-    img: brandGrowthImg,
-    title: 'Personal Brand Growth for a Business Coach',
-    desc: 'Content strategy & social media management that achieved +120% engagement and consistent brand authority.',
-    result: '+120% Engagement',
-    approach: ['Content Strategy', 'Audience Research', 'Campaign Strategy'],
+    id: 'bungalow',
+    title: '4-Bedroom Bungalow Interior',
+    subtitle: 'Scratch to Finish',
+    desc: 'A complete interior styling and execution for a spacious 4-bedroom bungalow. We took this home from bare construction to a fully finished, cohesive sanctuary. Our team handled space planning, designed custom carpentry, selected a warm organic color palette, and curated premium furnishings to create a warm, luxurious modern home.',
+    imageCount: 10,
+    folder: 'bungalow',
   },
   {
-    id: 2,
-    cat: 'interior',
-    catLabel: 'Interior Design',
-    img: livingRoomImg,
-    title: 'Modern Living Room Transformation',
-    desc: 'Residential redesign with neutral palette, upgraded lighting, and carefully sourced furniture for a bright, spacious feel.',
-    result: 'Full Transformation',
-    approach: ['Space Planning', 'Styling Direction', 'Furnishing'],
+    id: 'flat',
+    title: '2-Bedroom Flat Redesign',
+    subtitle: 'Living Room & Master Bedroom',
+    desc: 'A focused redesign of the main living space and master bedroom. We revamped the layout to maximize flow and natural light, introduced a serene neutral color palette, selected contemporary furniture, and added soft textures and lighting to create an intimate, elegant retreat.',
+    imageCount: 10,
+    folder: 'flat',
   },
   {
-    id: 3,
-    cat: 'digital',
-    catLabel: 'Digital Marketing',
-    img: dashboardImg,
-    title: 'Product Launch Campaign — Beauty Brand',
-    desc: 'A full 2-week Meta Ads campaign with pre/launch/post content strategy that drove a high-impact product debut.',
-    result: 'High-Impact Launch',
-    approach: ['Campaign Strategy', 'Meta Ads', 'Content Strategy'],
+    id: 'hairstore',
+    title: 'Hair Store Renovation',
+    subtitle: 'Renovation & Furnishing',
+    desc: 'A full commercial renovation and furnishing project for a boutique hair store. We transformed the retail outlet by designing customized product display shelves, installing a premium styling station, setting up atmospheric task lighting, and curating elegant seating to elevate the customer experience.',
+    imageCount: 5,
+    folder: 'hairstore',
   },
   {
-    id: 4,
-    cat: 'interior',
-    catLabel: 'Interior Styling',
-    img: bedroomImg,
-    title: 'Bedroom Styling & Comfort Upgrade',
-    desc: 'Warm, calming bedroom redesign with soft furnishings, complementary decor, and improved lighting for an elevated retreat.',
-    result: 'Elevated Comfort',
-    approach: ['Space Planning', 'Styling Direction', 'Furnishing'],
+    id: 'studio',
+    title: 'Studio Apartment Optimization',
+    subtitle: 'Space Maximization',
+    desc: 'Space-maximizing design for a compact studio apartment. We designed multi-functional zones for living, sleeping, and working, using smart custom storage, modular furniture, and a bright color scheme to make the space feel open, airy, and highly functional.',
+    imageCount: 5,
+    folder: 'studio',
   },
-  {
-    id: 5,
-    cat: 'digital',
-    catLabel: 'Social Media Management',
-    img: contentMockupImg,
-    title: 'Monthly SMM for Service-Based SME',
-    desc: 'Full-service social media management — weekly content plans, analytics tracking, and storytelling-driven engagement.',
-    result: 'Consistent Growth',
-    approach: ['Content Strategy', 'Audience Research', 'Analytics'],
-  },
-  {
-    id: 6,
-    cat: 'interior',
-    catLabel: 'Commercial Design',
-    img: officeImg,
-    title: 'Workspace Design & Optimization',
-    desc: 'Commercial office redesign focused on workflow, productivity, and a clean modern aesthetic that impresses clients.',
-    result: 'Optimised Workspace',
-    approach: ['Space Planning', 'Furniture Sourcing', 'Styling Direction'],
-  },
-];
-
-const FILTERS = [
-  { key: 'all', label: 'All Projects' },
-  { key: 'digital', label: 'Digital Projects' },
-  { key: 'interior', label: 'Interior Projects' },
 ];
 
 export default function Portfolio() {
-  const [active, setActive] = useState('all');
-  useScrollFade([active]);
+  useScrollFade();
+  const [lightbox, setLightbox] = useState({ isOpen: false, jobIndex: 0, imgIndex: 1 });
 
-  const filtered = active === 'all' ? ALL_PROJECTS : ALL_PROJECTS.filter(p => p.cat === active);
+  // Handle keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightbox.isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightbox]);
+
+  const openLightbox = (jobIndex, imgIndex) => {
+    setLightbox({ isOpen: true, jobIndex, imgIndex });
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setLightbox({ ...lightbox, isOpen: false });
+    document.body.style.overflow = '';
+  };
+
+  const prevImage = () => {
+    setLightbox((prev) => {
+      const job = INTERIOR_JOBS[prev.jobIndex];
+      const newImgIndex = prev.imgIndex === 1 ? job.imageCount : prev.imgIndex - 1;
+      return { ...prev, imgIndex: newImgIndex };
+    });
+  };
+
+  const nextImage = () => {
+    setLightbox((prev) => {
+      const job = INTERIOR_JOBS[prev.jobIndex];
+      const newImgIndex = prev.imgIndex === job.imageCount ? 1 : prev.imgIndex + 1;
+      return { ...prev, imgIndex: newImgIndex };
+    });
+  };
 
   return (
-    <main>
+    <main style={{ background: 'var(--cream)' }}>
       {/* HERO */}
       <section className="pf-hero" id="portfolio-hero">
         <div className="container">
           <div className="pf-hero__content fade-in">
-            <span className="section-label">My Portfolio</span>
             <h1>Work that tells a story<br />and delivers <em>results.</em></h1>
-            <p>Six projects across digital marketing and interior design — each one a testament to strategy, creativity, and craft.</p>
+            <p>A gallery of residential and commercial spaces we have revamped, elevated, and designed with purpose.</p>
           </div>
         </div>
       </section>
 
-      {/* FILTERS + GRID */}
-      <section className="pf-main section" id="portfolio-main">
+      {/* PORTFOLIO GALLERIES */}
+      <section className="pf-main section" id="portfolio-main" style={{ padding: '60px 0 100px' }}>
         <div className="container">
-          {/* Filters */}
-          <div className="pf-filters fade-in" role="tablist" aria-label="Portfolio filters">
-            {FILTERS.map(f => (
-              <button
-                key={f.key}
-                className={`pf-filter${active === f.key ? ' active' : ''}`}
-                onClick={() => setActive(f.key)}
-                role="tab"
-                aria-selected={active === f.key}
-                id={`portfolio-filter-${f.key}`}
-              >
-                {f.label}
-                <span className="pf-filter__count">
-                  {f.key === 'all' ? ALL_PROJECTS.length : ALL_PROJECTS.filter(p => p.cat === f.key).length}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Grid */}
-          <div className="pf-grid" key={active}>
-            {filtered.map((proj, i) => (
-              <div className="pf-card fade-in" key={proj.id} style={{ transitionDelay: `${i * 0.07}s` }}>
-                <div className="pf-card__img-wrap">
-                  <img src={proj.img} alt={proj.title} className="pf-card__img" loading="lazy" />
-                  <div className="pf-card__overlay">
-                    <div className="pf-card__approach">
-                      {proj.approach.map(a => <span key={a} className="pf-card__approach-tag">{a}</span>)}
-                    </div>
+          <div className="pf-jobs-list">
+            {INTERIOR_JOBS.map((job, jobIndex) => (
+              <div className="pf-job-section fade-in" key={job.id} id={`job-${job.id}`}>
+                <div className="pf-job-header">
+                  <div className="pf-job-meta">
+                    <span className="pf-job-badge">{job.subtitle}</span>
+                    <h2 className="pf-job-title">{job.title}</h2>
                   </div>
+                  <p className="pf-job-desc">{job.desc}</p>
                 </div>
-                <div className="pf-card__body">
-                  <span className={`badge ${proj.cat === 'digital' ? 'badge--digital' : ''}`}>
-                    {proj.catLabel}
-                  </span>
-                  <h3 className="pf-card__title">{proj.title}</h3>
-                  <p className="pf-card__desc">{proj.desc}</p>
-                  <div className="pf-card__footer">
-                    <div className="pf-card__result">
-                      {proj.cat === 'digital' ? <TrendingUp size={13} /> : <HomeIcon size={13} />}
-                      {proj.result}
-                    </div>
-                  </div>
+
+                <div className="pf-gallery-grid">
+                  {[...Array(job.imageCount)].map((_, idx) => {
+                    const imgNum = idx + 1;
+                    const imgUrl = `/images/portfolio/${job.folder}/img_${imgNum}.png`;
+                    return (
+                      <div
+                        className="pf-gallery-item"
+                        key={imgNum}
+                        onClick={() => openLightbox(jobIndex, imgNum)}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`${job.title} - View ${imgNum}`}
+                          className="pf-gallery-img"
+                          loading="lazy"
+                        />
+                        <div className="pf-gallery-overlay">
+                          <span>View Image</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -162,11 +147,48 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* LIGHTBOX MODAL */}
+      {lightbox.isOpen && (
+        <div className="pf-lightbox" onClick={closeLightbox}>
+          <button className="pf-lightbox__close" onClick={closeLightbox} aria-label="Close Lightbox">
+            <X size={24} />
+          </button>
+          
+          <button 
+            className="pf-lightbox__arrow pf-lightbox__arrow--prev" 
+            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            aria-label="Previous Image"
+          >
+            <ChevronLeft size={30} />
+          </button>
+
+          <div className="pf-lightbox__content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={`/images/portfolio/${INTERIOR_JOBS[lightbox.jobIndex].folder}/img_${lightbox.imgIndex}.png`}
+              alt={`${INTERIOR_JOBS[lightbox.jobIndex].title} - ${lightbox.imgIndex}`}
+              className="pf-lightbox__img"
+            />
+            <div className="pf-lightbox__caption">
+              <h3>{INTERIOR_JOBS[lightbox.jobIndex].title}</h3>
+              <p>Image {lightbox.imgIndex} of {INTERIOR_JOBS[lightbox.jobIndex].imageCount}</p>
+            </div>
+          </div>
+
+          <button 
+            className="pf-lightbox__arrow pf-lightbox__arrow--next" 
+            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            aria-label="Next Image"
+          >
+            <ChevronRight size={30} />
+          </button>
+        </div>
+      )}
+
       {/* CTA */}
       <section className="home-cta" id="portfolio-cta">
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 className="fade-in" style={{ color: 'var(--cream)' }}>Want results like these?</h2>
-          <p className="fade-in" style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }}>Let's talk about your project — whether digital, interior, or both.</p>
+          <p className="fade-in" style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }}>Let's talk about your space, and how we can elevate it together.</p>
           <Link to="/contact" className="btn btn-light" id="portfolio-cta-btn">Start a Project <ArrowRight size={16} /></Link>
         </div>
       </section>

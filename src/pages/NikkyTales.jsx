@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Share2, Layout, BarChart2, Star, CheckCircle } from 'lucide-react';
 import nikkytalesHeroImg from '../assets/images/nikkytales_hero.png';
-import dashboardImg from '../assets/images/digital_dashboard.png';
-import contentMockupImg from '../assets/images/content_mockup.png';
-import brandGrowthImg from '../assets/images/brand_growth.png';
+import metaAdsImg from '../assets/images/meta_ads_screenshot.png';
+import pageRecoveryImg from '../assets/images/page_recovery_screenshot.png';
+import brandConsultationImg from '../assets/images/brand_consultation_screenshot.png';
 import '../styles/nikkytales.css';
 
 function useScrollFade() {
@@ -24,7 +24,7 @@ const SERVICE_GROUPS = [
     cat: 'Social Media & Growth',
     icon: <Share2 size={20} />,
     services: [
-      { name: 'Social Media Management', desc: 'Full account management — strategy, posting, engagement, community building, and monthly reporting.' },
+      { name: 'Social Media Management', desc: 'Full account management: strategy, posting, engagement, community building, and monthly reporting.' },
       { name: 'Content Calendar Creation', desc: 'Structured 30-day content plans that eliminate guesswork and keep your brand consistently visible.' },
       { name: 'Bio & Profile Optimization', desc: "First impressions matter. We optimise your profile highlights, bio, and page structure for maximum impact." },
     ],
@@ -42,7 +42,7 @@ const SERVICE_GROUPS = [
     cat: 'Content & Communication',
     icon: <Layout size={20} />,
     services: [
-      { name: 'Caption Ghostwriting', desc: 'Engagement-driven captions crafted in your brand voice — storytelling that resonates and converts.' },
+      { name: 'Caption Ghostwriting', desc: 'Engagement-driven captions crafted in your brand voice: storytelling that resonates and converts.' },
       { name: 'Content Strategy Consulting', desc: 'Comprehensive content audits and strategic direction for brands that want to level up their messaging.' },
       { name: 'Reels & Video Strategy', desc: 'Video content strategy and scripting to maximise reach and engagement on Instagram and TikTok.' },
     ],
@@ -51,44 +51,44 @@ const SERVICE_GROUPS = [
 
 const PROJECTS = [
   {
-    img: brandGrowthImg,
-    title: 'Personal Brand Growth for a Business Coach',
-    type: 'Brand Growth',
-    challenge: 'Inconsistent posting, low engagement, and no clear content direction.',
-    what: ['Developed a content strategy focused on authority + storytelling', 'Created a 30-day content calendar', 'Optimised bio, highlights, and page structure', 'Introduced Reels + educational content mix', 'Implemented engagement-driven captions (ghostwriting)'],
-    result: '+120% increase in engagement. Stronger brand positioning. Increased inquiries from ideal clients.',
-    metric: '+120% Engagement',
+    img: metaAdsImg,
+    title: 'E-Commerce Meta Ads Campaign & Scaling',
+    type: 'Meta Ads',
+    challenge: 'Low visibility and high acquisition costs for a growing boutique brand. We needed to establish a sustainable acquisition channel and scale sales.',
+    what: ['Built a comprehensive conversion funnel starting from cold audience targeting', 'Created high-performing video ad creatives', 'Optimised product landing page copy and retargeting ads', 'Executed structured A/B tests on audiences and creatives'],
+    result: 'Achieved a 3.8x Return on Ad Spend (ROAS), scaled monthly revenue by 140%, and significantly lowered customer acquisition cost.',
+    metric: '3.8x ROAS / +140% Revenue',
   },
   {
-    img: dashboardImg,
-    title: 'Social Media & Ads Campaign for Product Launch',
-    type: 'Product Launch',
-    challenge: 'Launching a new beauty product with low visibility and no structured campaign plan.',
-    what: ['Built a 2-week launch strategy', 'Created pre-launch, launch, and post-launch content', 'Ran Meta Ads targeting niche audience', 'Designed storytelling-driven campaign messaging'],
-    result: 'Successful product launch with high engagement and improved audience targeting.',
-    metric: 'Successful Launch',
+    img: pageRecoveryImg,
+    title: 'Instagram Page Recovery & Re-engagement',
+    type: 'Page Recovery',
+    challenge: 'A prominent service brand had their primary Instagram account disabled, losing access to thousands of followers and their primary lead source.',
+    what: ['Handled security audit and recovery process directly through Meta support channels', 'Designed a 14-day "welcome back" re-engagement content campaign', 'Restored algorithmic reach and regained lost trust with interactive storytelling'],
+    result: 'Successfully recovered the page within 5 days, restored 90% of active reach in the first week, and generated 15+ high-quality inbound inquiries.',
+    metric: '100% Recovery / 90% Reach Restored',
   },
   {
-    img: contentMockupImg,
-    title: 'Monthly Social Media Management for SME',
-    type: 'SMM Retainer',
-    challenge: 'Inconsistent posting, low engagement, and no content structure for a service business.',
-    what: ['Managed full social media account', 'Created weekly content plan', 'Designed engaging captions and storytelling content', 'Tracked analytics and adjusted strategy'],
-    result: 'Consistent brand presence, increased audience interaction, and a more professional page.',
-    metric: 'Consistent Growth',
+    img: brandConsultationImg,
+    title: 'Brand Content & Ad Optimization Consultation',
+    type: 'Brand Consultation',
+    challenge: 'An established lifestyle brand had a high budget but flatlined growth, with content and ads that did not align with their premium price point.',
+    what: ['Conducted a thorough audit of organic content and paid ad accounts', 'Restructured content pillar framework to focus on high-ticket authority and storytelling', 'Trained their internal team on creative execution and ad optimization'],
+    result: 'Refined brand positioning to attract high-value clients, increasing lead quality by 65% and growing organic reach by 45% within 30 days of implementation.',
+    metric: '+65% Lead Quality / +45% Reach',
   },
 ];
 
 const METRICS = [
-  { num: '120%', label: 'Average Engagement Growth' },
+  { num: '140%', label: 'Average Sales Growth' },
   { num: '50+', label: 'Clients Served' },
-  { num: '3x', label: 'Average Reach Increase' },
+  { num: '3.8x', label: 'Average Ad ROAS' },
   { num: '99%', label: 'Client Satisfaction Rate' },
 ];
 
 const TESTIMONIALS = [
   { text: 'NikkyTales completely shifted my online presence. I went from barely posting to having a recognised brand that people actually talk about.', name: 'Amaka O.', role: 'Business Coach', init: 'A' },
-  { text: 'I had the best product launch I could imagine — all thanks to the strategy and content NikkyTales put together. Worth every penny.', name: 'Funmi A.', role: 'Beauty Brand Founder', init: 'F' },
+  { text: 'I had the best product launch I could imagine, all thanks to the strategy and content NikkyTales put together. Worth every penny.', name: 'Funmi A.', role: 'Beauty Brand Founder', init: 'F' },
 ];
 
 export default function NikkyTales() {
@@ -103,9 +103,8 @@ export default function NikkyTales() {
           <div className="nt-hero__overlay" />
         </div>
         <div className="container nt-hero__content">
-          <span className="section-label" style={{ background: 'rgba(152,117,91,0.2)', color: 'var(--sand)' }}>Digital Marketing</span>
           <h1 className="nt-hero__title fade-in">Strategic digital marketing<br />that <em>actually</em> grows your brand.</h1>
-          <p className="nt-hero__sub fade-in">Content strategy, social media management, and paid advertising — designed to build authority, grow your audience, and drive real results.</p>
+          <p className="nt-hero__sub fade-in">Content strategy, social media management, and paid advertising, designed to build authority, grow your audience, and drive real results.</p>
           <div className="nt-hero__btns fade-in">
             <Link to="/contact" className="btn btn-light" id="nt-book-btn">Book a Strategy Call <ArrowRight size={16} /></Link>
             <a href="#nt-projects" className="btn btn-outline-light" id="nt-portfolio-btn">View Case Studies</a>
@@ -117,9 +116,8 @@ export default function NikkyTales() {
       <section className="nt-services section" id="nt-services">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">What I Offer</span>
             <h2>Services tailored for growth</h2>
-            <p>Whether you're a small business owner, coach, or personal brand — NikkyTales has a service that fits where you are and where you're going.</p>
+            <p>Whether you're a small business owner, coach, or personal brand, NikkyTales has a service that fits where you are and where you're going.</p>
           </div>
 
           {SERVICE_GROUPS.map((group, gi) => (
@@ -148,9 +146,8 @@ export default function NikkyTales() {
       <section className="nt-projects section section--sand" id="nt-projects">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Case Studies</span>
             <h2>Work that speaks for itself</h2>
-            <p>Real client projects with real results — here's how NikkyTales delivers.</p>
+            <p>Real client projects with real results: here's how NikkyTales delivers.</p>
           </div>
 
           <div className="nt-projects__grid">
@@ -202,7 +199,6 @@ export default function NikkyTales() {
       <section className="nt-testimonials section section--cream-light" id="nt-testimonials">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Client Feedback</span>
             <h2>What digital clients are saying</h2>
           </div>
           <div className="grid-2">

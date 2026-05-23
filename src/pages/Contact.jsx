@@ -47,10 +47,9 @@ export default function Contact() {
         <div className="container">
           <div className="contact-hero__inner">
             <div className="contact-hero__content fade-in-left">
-              <span className="section-label">Get In Touch</span>
               <h1>Let's create something exceptional together.</h1>
               <div className="divider" />
-              <p>Whether you're ready to grow your brand online, transform your space, or just have a few questions — I'd love to connect. Fill in the form or reach out directly.</p>
+              <p>Whether you're ready to grow your brand online, transform your space, or just have a few questions, I'd love to connect. Fill in the form or reach out directly.</p>
 
               <div className="contact-info">
                 <a href="mailto:Nikkyspade@gmail.com" className="contact-info__item" id="contact-email-link-digital">
@@ -101,7 +100,7 @@ export default function Contact() {
               {!submitted ? (
                 <form className="contact-form" onSubmit={handleSubmit} id="contact-form">
                   <h3 className="contact-form__title">Send a Message</h3>
-                  <p className="contact-form__sub">I typically respond within 24–48 hours.</p>
+                  <p className="contact-form__sub">I typically respond within 24-48 hours.</p>
 
                   <div className="contact-form__row">
                     <div className="contact-form__field">
@@ -166,7 +165,7 @@ export default function Contact() {
                       id="contact-details"
                       name="details"
                       className="contact-form__input contact-form__textarea"
-                      placeholder="Tell me about your project, goals, timeline, budget — anything that helps me understand what you need..."
+                      placeholder="Tell me about your project, goals, timeline, budget, or anything that helps me understand what you need..."
                       rows={5}
                       value={formData.details}
                       onChange={handleChange}
@@ -182,7 +181,7 @@ export default function Contact() {
                 <div className="contact-success" id="contact-success">
                   <div className="contact-success__icon">✦</div>
                   <h3>Message received!</h3>
-                  <p>Thank you for reaching out. I'll get back to you within 24–48 hours. Looking forward to connecting!</p>
+                  <p>Thank you for reaching out. I'll get back to you within 24-48 hours. Looking forward to connecting!</p>
                   <a
                     href="https://wa.me/2348132605102"
                     target="_blank"
@@ -204,7 +203,6 @@ export default function Contact() {
         <div className="container">
           <div className="contact-note__inner">
             <div className="fade-in">
-              <span className="section-label">What Happens Next?</span>
               <h2>A simple, seamless process</h2>
             </div>
             <div className="contact-note__steps">
@@ -212,7 +210,7 @@ export default function Contact() {
                 { num: '01', title: 'You Reach Out', desc: 'Fill in the form or message me on WhatsApp with your project details and goals.' },
                 { num: '02', title: 'Discovery Call', desc: "We hop on a quick call to understand your vision, timeline, and expectations." },
                 { num: '03', title: 'Custom Proposal', desc: 'I send you a tailored proposal with scope, timeline, and pricing for your review.' },
-                { num: '04', title: 'We Get Started', desc: "Once you're happy, we sign off and dive in — building your brand or transforming your space." },
+                { num: '04', title: 'We Get Started', desc: "Once you're happy, we sign off and dive in, building your brand or transforming your space." },
               ].map((step, i) => (
                 <div className="contact-step fade-in" key={step.num} style={{ transitionDelay: `${i * 0.1}s` }}>
                   <div className="contact-step__num">{step.num}</div>

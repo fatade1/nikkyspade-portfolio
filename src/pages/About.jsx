@@ -20,13 +20,13 @@ function useScrollFade() {
 }
 
 const VALUES = [
-  { icon: <Heart size={22} />, title: 'Intentional Creativity', desc: 'Every decision — whether a content caption or furniture selection — is made with purpose and care.' },
+  { icon: <Heart size={22} />, title: 'Intentional Creativity', desc: 'Every decision, whether a content caption or furniture selection, is made with purpose and care.' },
   { icon: <Target size={22} />, title: 'Results-Driven', desc: 'Beautiful work that also delivers measurable outcomes: growth, conversions, and transformations.' },
   { icon: <Zap size={22} />, title: 'Client-First Always', desc: 'Your vision is the foundation. I listen deeply, then elevate it beyond what you imagined.' },
 ];
 
 const TIMELINE = [
-  { year: '2021', title: 'NikkyTales Founded', desc: 'Started with a passion for storytelling and social media — helping small businesses find their voice online.' },
+  { year: '2021', title: 'NikkyTales Founded', desc: 'Started with a passion for storytelling and social media, helping small businesses find their voice online.' },
   { year: '2022', title: 'First 20 Clients', desc: 'Grew NikkyTales to serve 20+ clients across industries, delivering consistent brand growth results.' },
   { year: '2023', title: 'The Bloom Interiors Launches', desc: 'Merged a lifelong love for beautiful spaces into a full interior design and styling service.' },
   { year: '2024', title: 'Dual Brand Excellence', desc: 'Now operating two premium service brands with a growing portfolio of happy clients and stunning transformations.' },
@@ -42,10 +42,9 @@ export default function About() {
         <div className="container">
           <div className="about-hero__inner">
             <div className="about-hero__content fade-in-left">
-              <span className="section-label">About Me</span>
               <h1>Creative, strategic, and deeply passionate about excellence.</h1>
               <div className="divider" />
-              <p>I'm Nikkyspade — a multi-disciplinary creative entrepreneur who bridges the worlds of digital marketing and interior design. I build brands and I build spaces. Both with intention. Both with love.</p>
+              <p>I'm Nikkyspade, a multi-disciplinary creative entrepreneur who bridges the worlds of digital marketing and interior design. I build brands and I build spaces. Both with intention. Both with love.</p>
               <div className="about-hero__btns">
                 <Link to="/contact" className="btn btn-primary" id="about-contact-btn">Work With Me <ArrowRight size={16} /></Link>
                 <Link to="/portfolio" className="btn btn-outline" id="about-portfolio-btn">View My Work</Link>
@@ -67,12 +66,11 @@ export default function About() {
         <div className="container">
           <div className="about-story__inner">
             <div className="fade-in-left">
-              <span className="section-label">My Story</span>
               <h2>Born from passion. Built on purpose.</h2>
               <div className="divider" />
               <p style={{ marginBottom: '16px' }}>From a very early age, I was drawn to two things: the power of stories to connect people, and the way a beautifully arranged space could completely change how someone felt.</p>
-              <p style={{ marginBottom: '16px' }}>I started NikkyTales because I saw so many brilliant businesses struggling to communicate their value online. I knew I could help — and I did. Through strategic content, storytelling-driven social media, and targeted paid advertising, I began helping brands grow in ways they didn't think were possible.</p>
-              <p>The Bloom Interiors came next — a natural extension of my eye for aesthetics. Transforming a cluttered room into a beautiful, functional space that someone falls in love with? There's nothing quite like it. Both brands now serve one unified mission: helping people live and work in excellence.</p>
+              <p style={{ marginBottom: '16px' }}>I started NikkyTales because I saw so many brilliant businesses struggling to communicate their value online. I knew I could help. And I did. Through strategic content, storytelling-driven social media, and targeted paid advertising, I began helping brands grow in ways they didn't think were possible.</p>
+              <p>The Bloom Interiors came next, a natural extension of my eye for aesthetics. Transforming a cluttered room into a beautiful, functional space that someone falls in love with? There's nothing quite like it. Both brands now serve one unified mission: helping people live and work in excellence.</p>
             </div>
             <div className="about-story__img-grid fade-in-right">
               <img src={heroImg} alt="Nikkyspade creative workspace" className="about-story__img about-story__img--main" />
@@ -86,7 +84,6 @@ export default function About() {
       <section className="about-values section" id="about-values">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">My Approach</span>
             <h2>What drives everything I do</h2>
           </div>
           <div className="grid-3">
@@ -105,9 +102,8 @@ export default function About() {
       <section className="about-dual section section--sand" id="about-dual">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Dual Expertise</span>
             <h2>Two brands. One creative vision.</h2>
-            <p>Rather than choosing between digital strategy and design — I mastered both. Each informs the other, making my work richer and more impactful.</p>
+            <p>Rather than choosing between digital strategy and design, I mastered both. Each informs the other, making my work richer and more impactful.</p>
           </div>
           <div className="about-dual__grid">
             <div className="about-dual__card fade-in-left" id="about-nikkytales-card">
@@ -117,7 +113,7 @@ export default function About() {
               <div className="about-dual__card-content">
                 <span className="badge badge--digital">Digital Marketing</span>
                 <h3>NikkyTales</h3>
-                <p>Your brand's digital home — social media management, paid ads, content strategy, and ghostwriting that converts audiences into loyal communities and paying clients.</p>
+                <p>Your brand's digital home: social media management, paid ads, content strategy, and ghostwriting that converts audiences into loyal communities and paying clients.</p>
                 <ul className="about-dual__list">
                   {['Content Strategy', 'Social Media Management', 'Meta Ads Campaigns', 'Caption Ghostwriting', 'Analytics & Reporting'].map(item => (
                     <li key={item}><CheckCircle size={14} /> {item}</li>
@@ -151,7 +147,6 @@ export default function About() {
       <section className="about-timeline section section--cream-light" id="about-timeline">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">The Journey</span>
             <h2>Milestones that shaped me</h2>
           </div>
           <div className="about-timeline__track">
@@ -173,7 +168,7 @@ export default function About() {
       <section className="home-cta" id="about-cta">
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 style={{ color: 'var(--cream)' }} className="fade-in">Ready to work together?</h2>
-          <p style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }} className="fade-in">Let's talk about your goals — whether it's growing your brand or designing your dream space.</p>
+          <p style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }} className="fade-in">Let's talk about your goals, whether it's growing your brand or designing your dream space.</p>
           <Link to="/contact" className="btn btn-light" id="about-cta-btn">Book a Free Consultation <ArrowRight size={16} /></Link>
         </div>
       </section>

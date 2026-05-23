@@ -25,7 +25,7 @@ const SERVICE_GROUPS = [
     cat: 'Interior Design',
     icon: <Home size={20} />,
     services: [
-      { name: 'Residential Interior Design', desc: 'Full home design transformations — living rooms, bedrooms, kitchens, and entire residences tailored to your lifestyle.' },
+      { name: 'Residential Interior Design', desc: 'Full home design transformations: living rooms, bedrooms, kitchens, and entire residences tailored to your lifestyle.' },
       { name: 'Commercial Interior Design', desc: 'Office spaces, studios, and retail environments designed for functionality, productivity, and brand alignment.' },
       { name: 'Design Consultation', desc: 'A discovery session to define your vision, assess the space, and create a clear design direction for your project.' },
     ],
@@ -44,7 +44,7 @@ const SERVICE_GROUPS = [
     icon: <Package size={20} />,
     services: [
       { name: 'Furniture Sourcing & Procurement', desc: 'We source and procure furniture, art, and accessories that perfectly match your design vision and budget.' },
-      { name: 'Styling & Decor', desc: 'The finishing touch — thoughtful styling with art, plants, cushions, and decor that brings the space to life.' },
+      { name: 'Styling & Decor', desc: 'The finishing touch: thoughtful styling with art, plants, cushions, and decor that brings the space to life.' },
       { name: 'Project Management', desc: 'End-to-end execution from concept to reveal. We handle timelines, vendors, and logistics so you don\'t have to.' },
     ],
   },
@@ -52,36 +52,45 @@ const SERVICE_GROUPS = [
 
 const PROJECTS = [
   {
-    img: livingRoomImg,
-    title: 'Modern Living Room Transformation',
-    type: 'Residential Design',
-    challenge: 'The space felt crowded, poorly lit, and lacked cohesion. Furniture placement did not maximise space.',
-    what: ['Redesigned layout for better space flow', 'Introduced a neutral color palette (cream, brown tones)', 'Upgraded lighting for warmth and ambience', 'Selected modern, functional furniture pieces', 'Styled the space with minimal decor'],
-    result: 'Brighter, more spacious feel. Clean, modern aesthetic. Improved functionality and visual appeal.',
+    img: '/images/portfolio/bungalow/img_1.png',
+    title: '4-Bedroom Bungalow Interior',
+    type: 'Scratch to Finish',
+    challenge: 'A newly built 4-bedroom bungalow that was completely bare, requiring full layout planning, custom carpentry, and furnishing from scratch.',
+    what: ['Handled detailed spatial planning', 'Designed custom media consoles and kitchen cabinetry', 'Selected a warm neutral palette', 'Curated all furniture and decor', 'Installed layered, atmospheric lighting'],
+    result: 'A fully cohesive, luxury residential sanctuary tailored to the family\'s lifestyle.',
     metric: 'Full Transformation',
   },
   {
-    img: bedroomImg,
-    title: 'Bedroom Styling & Comfort Upgrade',
-    type: 'Interior Styling',
-    challenge: 'The bedroom lacked personality and felt plain, with no clear design direction.',
-    what: ['Introduced a warm, calming color palette', 'Added soft furnishings (curtains, rugs, cushions)', 'Selected complementary decor pieces', 'Improved lighting setup for a cozy feel'],
-    result: 'More inviting and relaxing space. Visually cohesive design. A personalised bedroom experience.',
-    metric: 'Elevated Comfort',
+    img: '/images/portfolio/flat/img_1.png',
+    title: '2-Bedroom Flat Redesign',
+    type: 'Living Room & Master Bed',
+    challenge: 'The flat felt dark, cluttered, and lacked functional zoning in the main living space and master bedroom.',
+    what: ['Optimised layout for flow and natural light', 'Introduced clean lines and soft textures', 'Updated the lighting setup', 'Curated bespoke, modern furniture'],
+    result: 'An elegant, spacious living room and a calming, retreat-like master bedroom.',
+    metric: 'Living Room & Master Bed',
   },
   {
-    img: officeImg,
-    title: 'Workspace Design & Optimization',
-    type: 'Commercial Design',
-    challenge: 'The office was cluttered and not optimised for productivity or comfort.',
-    what: ['Reorganised layout for better workflow', 'Selected functional furniture', 'Introduced clean, minimal design elements', 'Improved lighting and workspace comfort'],
-    result: 'More productive environment. Cleaner, organised layout. Professional and modern look.',
-    metric: 'Optimised Workspace',
+    img: '/images/portfolio/hairstore/img_1.png',
+    title: 'Hair Store Renovation',
+    type: 'Renovation & Furnishing',
+    challenge: 'A plain commercial space that needed to be transformed into a high-end boutique hair store, requiring structural layout changes and elegant client styling areas.',
+    what: ['Designed custom high-capacity product display shelves', 'Renovated flooring and custom wall finishes', 'Sourced and installed luxury styling and washing stations', 'Curated premium client lounge seating and decorative lighting'],
+    result: 'A sophisticated, high-end retail experience that elevates the brand value and delights shoppers.',
+    metric: 'Hair Store Design',
+  },
+  {
+    img: '/images/portfolio/studio/img_1.png',
+    title: 'Studio Apartment Optimization',
+    type: 'Space Maximization',
+    challenge: 'A compact studio apartment requiring distinct living, sleeping, and working zones without feeling cramped.',
+    what: ['Implemented multi-functional modular furniture', 'Designed smart custom storage dividers', 'Applied a bright colour scheme with strategic mirrors'],
+    result: 'A highly efficient, stylish, and airy small-space home that feels twice its actual size.',
+    metric: 'Studio Design',
   },
 ];
 
 const TESTIMONIALS = [
-  { text: 'The Bloom Interiors gave me the home I always dreamed of. Every detail was handled with such care — the colours, the lighting, the furniture choices. Absolutely stunning.', name: 'Chidi B.', role: 'Homeowner, Abuja', init: 'C' },
+  { text: 'The Bloom Interiors gave me the home I always dreamed of. Every detail was handled with such care: the colours, the lighting, and the furniture choices. Absolutely stunning.', name: 'Chidi B.', role: 'Homeowner, Abuja', init: 'C' },
   { text: "I never thought my office could look this good. Nikkyspade transformed a plain workspace into something I'm genuinely proud to bring clients into.", name: 'Tunde M.', role: 'Business Owner, Lagos', init: 'T' },
 ];
 
@@ -93,13 +102,12 @@ export default function BloomInteriors() {
       {/* HERO */}
       <section className="bloom-hero" id="bloom-hero">
         <div className="bloom-hero__image-wrap">
-          <img src={bloomHeroImg} alt="The Bloom Interiors — Interior Design" className="bloom-hero__image" />
+          <img src={bloomHeroImg} alt="The Bloom Interiors: Interior Design" className="bloom-hero__image" />
           <div className="bloom-hero__overlay" />
         </div>
         <div className="container bloom-hero__content">
-          <span className="section-label" style={{ background: 'rgba(212,187,172,0.2)', color: 'var(--sand)' }}>Interior Design</span>
           <h1 className="bloom-hero__title fade-in">Spaces that feel as<br />beautiful as they <em>look.</em></h1>
-          <p className="bloom-hero__sub fade-in">Residential and commercial interior design — crafted with warmth, intention, and an eye for timeless elegance.</p>
+          <p className="bloom-hero__sub fade-in">Residential and commercial interior design, crafted with warmth, intention, and an eye for timeless elegance.</p>
           <div className="bloom-hero__btns fade-in">
             <Link to="/contact" className="btn btn-light" id="bloom-consult-btn">Book a Design Consultation <ArrowRight size={16} /></Link>
             <a href="#bloom-projects" className="btn btn-outline-light" id="bloom-portfolio-btn">View Projects</a>
@@ -111,9 +119,8 @@ export default function BloomInteriors() {
       <section className="bloom-services section" id="bloom-services">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Our Services</span>
             <h2>Design services for every space</h2>
-            <p>From concept to completion — The Bloom Interiors offers a full suite of design services for residential and commercial clients.</p>
+            <p>From concept to completion, The Bloom Interiors offers a full suite of design services for residential and commercial clients.</p>
           </div>
 
           {SERVICE_GROUPS.map((group, gi) => (
@@ -142,9 +149,8 @@ export default function BloomInteriors() {
       <section className="bloom-projects section section--sand" id="bloom-projects">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Portfolio</span>
             <h2>Spaces we've transformed</h2>
-            <p>A collection of residential and commercial projects — each one crafted with attention, warmth, and precision.</p>
+            <p>A collection of residential and commercial projects, each one crafted with attention, warmth, and precision.</p>
           </div>
 
           <div className="bloom-projects__grid">
@@ -174,6 +180,12 @@ export default function BloomInteriors() {
               </div>
             ))}
           </div>
+
+          <div style={{ textAlign: 'center', marginTop: '48px' }} className="fade-in">
+            <Link to="/portfolio" className="btn btn-primary" id="bloom-view-gallery-btn">
+              View Full Gallery <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -182,11 +194,10 @@ export default function BloomInteriors() {
         <div className="container">
           <div className="bloom-ba__inner">
             <div className="bloom-ba__content fade-in-left">
-              <span className="section-label">Transformations</span>
               <h2>See the difference The Bloom Interiors makes</h2>
               <div className="divider" />
-              <p>Every project begins with a space that has potential — and ends with a space that has purpose. Our before & after transformations speak louder than words.</p>
-              <p style={{ marginTop: '16px' }}>From cluttered rooms to curated interiors — we handle every detail of the transformation journey.</p>
+              <p>Every project begins with a space that has potential, and ends with a space that has purpose. Our before & after transformations speak louder than words.</p>
+              <p style={{ marginTop: '16px' }}>From cluttered rooms to curated interiors, we handle every detail of the transformation journey.</p>
               <Link to="/contact" className="btn btn-primary" style={{ marginTop: '32px' }} id="bloom-ba-cta">Start Your Transformation <ArrowRight size={16} /></Link>
             </div>
             <div className="bloom-ba__image-wrap fade-in-right">
@@ -202,7 +213,6 @@ export default function BloomInteriors() {
       <section className="section section--cream-light" id="bloom-testimonials">
         <div className="container">
           <div className="section-header--center fade-in">
-            <span className="section-label">Client Stories</span>
             <h2>What our interior clients say</h2>
           </div>
           <div className="grid-2">
@@ -228,7 +238,7 @@ export default function BloomInteriors() {
       <section className="home-cta" id="bloom-cta">
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 className="fade-in" style={{ color: 'var(--cream)' }}>Ready to transform your space?</h2>
-          <p className="fade-in" style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }}>Let's create a space you absolutely love — beautiful, intentional, and perfectly you.</p>
+          <p className="fade-in" style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }}>Let's create a space you absolutely love: beautiful, intentional, and perfectly you.</p>
           <Link to="/contact" className="btn btn-light" id="bloom-cta-btn">Book a Design Consultation <ArrowRight size={16} /></Link>
         </div>
       </section>
