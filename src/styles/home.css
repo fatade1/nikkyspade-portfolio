@@ -735,3 +735,111 @@
   .portfolio-preview__scroll { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
 }
+
+/* REVIEWS SCROLLER (Infinite Marquee) */
+.reviews-scroller-wrap {
+  margin-top: 60px;
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.reviews-scroller-wrap::before,
+.reviews-scroller-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reviews-scroller-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--cream) 10%, transparent);
+}
+
+.reviews-scroller-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--cream) 10%, transparent);
+}
+
+.reviews-scroller {
+  overflow: hidden;
+  width: 100%;
+}
+
+.reviews-scroller-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.reviews-scroller-track:hover {
+  animation-play-state: paused;
+}
+
+.reviews-scroller-group {
+  display: flex;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.scroller-item {
+  width: 280px;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(152, 117, 91, 0.15);
+  background: var(--cream-light);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  cursor: grab;
+}
+
+.scroller-item:active {
+  cursor: grabbing;
+}
+
+.scroller-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--light-brown);
+}
+
+.scroller-item img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Adjustments for mobile scroll speed and item sizes */
+@media (max-width: 600px) {
+  .reviews-scroller-wrap::before,
+  .reviews-scroller-wrap::after {
+    width: 60px;
+  }
+  .scroller-item {
+    width: 220px;
+  }
+  .scroller-item img {
+    height: 300px;
+  }
+}
+

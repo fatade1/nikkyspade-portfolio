@@ -5,9 +5,10 @@ import heroImg from '../assets/images/hero_portrait.png';
 import aboutImg from '../assets/images/about_portrait.png';
 import bloomHeroImg from '../assets/images/bloom_hero.png';
 import nikkytalesHeroImg from '../assets/images/nikkytales_hero.png';
-import livingRoomImg from '../assets/images/living_room.png';
-import dashboardImg from '../assets/images/digital_dashboard.png';
-import brandGrowthImg from '../assets/images/brand_growth.png';
+import reviewChat1 from '../assets/images/review_chat_1.jpg';
+import reviewChat2 from '../assets/images/review_chat_2.jpg';
+import reviewChat3 from '../assets/images/review_chat_3.jpg';
+import reviewChat4 from '../assets/images/review_chat_4.jpg';
 import '../styles/home.css';
 
 /* Intersection Observer hook for scroll animation */
@@ -285,6 +286,26 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Continuous scrolling chat reviews */}
+          <div className="reviews-scroller-wrap fade-in">
+            <div className="reviews-scroller">
+              <div className="reviews-scroller-track">
+                <div className="reviews-scroller-group">
+                  <div className="scroller-item"><img src={reviewChat1} alt="WhatsApp Review 1" /></div>
+                  <div className="scroller-item"><img src={reviewChat2} alt="WhatsApp Review 2" /></div>
+                  <div className="scroller-item"><img src={reviewChat3} alt="WhatsApp Review 3" /></div>
+                  <div className="scroller-item"><img src={reviewChat4} alt="WhatsApp Review 4" /></div>
+                </div>
+                <div className="reviews-scroller-group" aria-hidden="true">
+                  <div className="scroller-item"><img src={reviewChat1} alt="WhatsApp Review 1" /></div>
+                  <div className="scroller-item"><img src={reviewChat2} alt="WhatsApp Review 2" /></div>
+                  <div className="scroller-item"><img src={reviewChat3} alt="WhatsApp Review 3" /></div>
+                  <div className="scroller-item"><img src={reviewChat4} alt="WhatsApp Review 4" /></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
