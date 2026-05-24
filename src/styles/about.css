@@ -204,6 +204,10 @@
   transition: transform 0.5s ease;
 }
 
+#about-nikkytales-card .about-dual__card-img {
+  object-position: center top;
+}
+
 .about-dual__card:hover .about-dual__card-img {
   transform: scale(1.05);
 }
