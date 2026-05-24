@@ -54,6 +54,43 @@ export default function Portfolio() {
   useScrollFade();
   const [lightbox, setLightbox] = useState({ isOpen: false, jobIndex: 0, imgIndex: 1 });
 
+  // Handle body overflow when lightbox is open
+  useEffect(() => {
+    if (lightbox.isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightbox.isOpen]);
+
+  // Functions declared as standard hoisted functions to satisfy ESLint
+  function openLightbox(jobIndex, imgIndex) {
+    setLightbox({ isOpen: true, jobIndex, imgIndex });
+  }
+
+  function closeLightbox() {
+    setLightbox(prev => ({ ...prev, isOpen: false }));
+  }
+
+  function prevImage() {
+    setLightbox((prev) => {
+      const job = INTERIOR_JOBS[prev.jobIndex];
+      const newImgIndex = prev.imgIndex === 1 ? job.imageCount : prev.imgIndex - 1;
+      return { ...prev, imgIndex: newImgIndex };
+    });
+  }
+
+  function nextImage() {
+    setLightbox((prev) => {
+      const job = INTERIOR_JOBS[prev.jobIndex];
+      const newImgIndex = prev.imgIndex === job.imageCount ? 1 : prev.imgIndex + 1;
+      return { ...prev, imgIndex: newImgIndex };
+    });
+  }
+
   // Handle keyboard navigation for lightbox
   useEffect(() => {
     if (!lightbox.isOpen) return;
@@ -64,33 +101,7 @@ export default function Portfolio() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightbox]);
-
-  const openLightbox = (jobIndex, imgIndex) => {
-    setLightbox({ isOpen: true, jobIndex, imgIndex });
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeLightbox = () => {
-    setLightbox({ ...lightbox, isOpen: false });
-    document.body.style.overflow = '';
-  };
-
-  const prevImage = () => {
-    setLightbox((prev) => {
-      const job = INTERIOR_JOBS[prev.jobIndex];
-      const newImgIndex = prev.imgIndex === 1 ? job.imageCount : prev.imgIndex - 1;
-      return { ...prev, imgIndex: newImgIndex };
-    });
-  };
-
-  const nextImage = () => {
-    setLightbox((prev) => {
-      const job = INTERIOR_JOBS[prev.jobIndex];
-      const newImgIndex = prev.imgIndex === job.imageCount ? 1 : prev.imgIndex + 1;
-      return { ...prev, imgIndex: newImgIndex };
-    });
-  };
+  }, [lightbox.isOpen]);
 
   return (
     <main style={{ background: 'var(--cream)' }}>

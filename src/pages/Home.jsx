@@ -5,6 +5,7 @@ import heroImg from '../assets/images/hero_portrait.png';
 import aboutImg from '../assets/images/about_portrait.png';
 import bloomHeroImg from '../assets/images/bloom_hero.png';
 import nikkytalesHeroImg from '../assets/images/nikkytales_hero.png';
+import livingRoomImg from '../assets/images/living_room.png';
 import reviewChat1 from '../assets/images/review_chat_1.jpg';
 import reviewChat2 from '../assets/images/review_chat_2.jpg';
 import reviewChat3 from '../assets/images/review_chat_3.jpg';

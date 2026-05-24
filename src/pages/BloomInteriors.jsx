@@ -2,9 +2,6 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Home, Palette, Package, Star, CheckCircle } from 'lucide-react';
 import bloomHeroImg from '../assets/images/bloom_hero.png';
-import livingRoomImg from '../assets/images/living_room.png';
-import bedroomImg from '../assets/images/bedroom_styling.png';
-import officeImg from '../assets/images/office_space.png';
 import beforeAfterImg from '../assets/images/before_after.png';
 import '../styles/bloom.css';
 

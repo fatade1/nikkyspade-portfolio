@@ -778,7 +778,7 @@
 .reviews-scroller-track {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 20s linear infinite;
 }
 
 .reviews-scroller-track:hover {
