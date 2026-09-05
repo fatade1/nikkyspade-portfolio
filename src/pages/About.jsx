@@ -1,96 +1,238 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Target, Zap, CheckCircle } from 'lucide-react';
+import {
+  ArrowRight,
+  Heart,
+  Target,
+  Zap,
+  CheckCircle,
+  TrendingUp,
+  Home as HomeIcon,
+  Sparkles
+} from 'lucide-react';
+import { DigitalGenieMark, BloomMark } from '../components/Logos';
+
 import aboutImg from '../assets/images/about_portrait.png';
-import heroImg from '../assets/images/hero_portrait.png';
 import bloomHeroImg from '../assets/images/bloom_hero.png';
 import nikkytalesHeroImg from '../assets/images/nikkytales_hero.png';
+
 import '../styles/about.css';
 
 function useScrollFade() {
   useEffect(() => {
     const els = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
     const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
-      { threshold: 0.12 }
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
     );
-    els.forEach(el => observer.observe(el));
+    els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 }
 
 const VALUES = [
-  { icon: <Heart size={22} />, title: 'Intentional Creativity', desc: 'Every decision, whether a content caption or furniture selection, is made with purpose and care.' },
-  { icon: <Target size={22} />, title: 'Results-Driven', desc: 'Beautiful work that also delivers measurable outcomes: growth, conversions, and transformations.' },
-  { icon: <Zap size={22} />, title: 'Client-First Always', desc: 'Your vision is the foundation. I listen deeply, then elevate it beyond what you imagined.' },
+  {
+    icon: <Heart size={22} />,
+    title: 'Intentional Experience',
+    desc: 'Whether designing a high-converting digital acquisition funnel or styling a residential living room, every detail is engineered with clear purpose.',
+  },
+  {
+    icon: <Target size={22} />,
+    title: 'Measurable Impact',
+    desc: 'We combine aesthetic beauty with hard commercial outcomes: profitable advertising ROAS, audience authority, and functional spatial flow.',
+  },
+  {
+    icon: <Zap size={22} />,
+    title: 'Client-First Excellence',
+    desc: 'Your brand vision or personal sanctuary is our foundation. We listen deeply, plan meticulously, and execute without compromise.',
+  },
 ];
 
 const TIMELINE = [
-  { year: '2021', title: 'NikkyTales Founded', desc: 'Started with a passion for storytelling and social media, helping small businesses find their voice online.' },
-  { year: '2022', title: 'First 20 Clients', desc: 'Grew NikkyTales to serve 20+ clients across industries, delivering consistent brand growth results.' },
-  { year: '2023', title: 'The Bloom Interiors Launches', desc: 'Merged a lifelong love for beautiful spaces into a full interior design and styling service.' },
-  { year: '2024', title: 'Dual Brand Excellence', desc: 'Now operating two premium service brands with a growing portfolio of happy clients and stunning transformations.' },
+  {
+    year: '2021',
+    title: 'Digital Agency Inception',
+    desc: 'Began building bespoke content strategies and digital growth funnels for emerging brands and high-ticket service founders.',
+  },
+  {
+    year: '2022',
+    title: 'Scaling Paid Media & Portfolio',
+    desc: 'Scaled to 30+ brands, delivering 3.8x+ ROAS Meta ad campaigns and high-retention social media management frameworks.',
+  },
+  {
+    year: '2023',
+    title: 'Bloom Interiors Founded',
+    desc: 'Launched Bloom Interiors as a dedicated spatial design practice, transforming residential homes, retail stores, and commercial suites.',
+  },
+  {
+    year: '2026',
+    title: 'The Digital Genie Creative House',
+    desc: 'Unified both practices under The Digital Genie: a multi-disciplinary creative growth house uniting digital authority with physical luxury.',
+  },
 ];
 
 export default function About() {
   useScrollFade();
 
   return (
-    <main>
-      {/* HERO */}
-      <section className="about-hero">
+    <div className="about-page">
+      {/* ====== HERO ====== */}
+      <section className="about-hero" id="about-hero">
         <div className="container">
           <div className="about-hero__inner">
             <div className="about-hero__content fade-in-left">
-              <h1>Creative, strategic, and deeply passionate about excellence.</h1>
-              <div className="divider" />
-              <p>I'm Nikkyspade, a multi-disciplinary creative entrepreneur who bridges the worlds of digital marketing and interior design. I build brands and I build spaces. Both with intention. Both with love.</p>
-              <div className="about-hero__btns">
-                <Link to="/contact" className="btn btn-primary" id="about-contact-btn">Work With Me <ArrowRight size={16} /></Link>
-                <Link to="/portfolio" className="btn btn-outline" id="about-portfolio-btn">View My Work</Link>
+              <span className="tag">About The Creative House</span>
+              <h1>One creative house. Two distinct disciplines.</h1>
+              <p>
+                The Digital Genie represents a modern creative business model: uniting high-impact digital marketing strategy with tactile, luxury interior transformations.
+              </p>
+              <div className="about-hero__actions">
+                <Link to="/digital" className="btn btn-digital">
+                  Explore Digital Division <ArrowRight size={15} />
+                </Link>
+                <Link to="/bloom" className="btn btn-outline-bloom">
+                  Explore Bloom Interiors
+                </Link>
               </div>
             </div>
-            <div className="about-hero__image-wrap fade-in-right">
-              <img src={aboutImg} alt="Nikkyspade — Creative Entrepreneur" className="about-hero__image" />
-              <div className="about-hero__image-badge">
-                <span className="about-hero__badge-num">50+</span>
-                <span className="about-hero__badge-label">Happy Clients</span>
+
+            <div className="about-hero__img-wrap fade-in-right">
+              <img src={aboutImg} alt="The Digital Genie Founder" className="about-hero__img" />
+              <div className="about-hero__badge">
+                <DigitalGenieMark size={24} />
+                <div>
+                  <strong>Creative Growth House</strong>
+                  <span>Digital Strategy & Interior Design</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* STORY */}
-      <section className="about-story section section--cream-light" id="about-story">
+      {/* ====== STORY ====== */}
+      <section className="about-story section" id="about-story">
         <div className="container">
           <div className="about-story__inner">
-            <div className="fade-in-left">
-              <h2>Born from passion. Built on purpose.</h2>
-              <div className="divider" />
-              <p style={{ marginBottom: '16px' }}>From a very early age, I was drawn to two things: the power of stories to connect people, and the way a beautifully arranged space could completely change how someone felt.</p>
-              <p style={{ marginBottom: '16px' }}>I started NikkyTales because I saw so many brilliant businesses struggling to communicate their value online. I knew I could help. And I did. Through strategic content, storytelling-driven social media, and targeted paid advertising, I began helping brands grow in ways they didn't think were possible.</p>
-              <p>The Bloom Interiors came next, a natural extension of my eye for aesthetics. Transforming a cluttered room into a beautiful, functional space that someone falls in love with? There's nothing quite like it. Both brands now serve one unified mission: helping people live and work in excellence.</p>
+            <div className="about-story__text fade-in-left">
+              <span className="tag tag--green">Our Philosophy</span>
+              <h2>Why digital growth & spatial design coexist</h2>
+              <p>
+                In the modern landscape, how your business appears on a screen and how an environment feels when you step inside are fundamentally connected. Both demand the exact same core craft: **Understanding human emotion, crafting intentional perception, and executing with uncompromising precision.**
+              </p>
+              <p>
+                Rather than treating digital marketing and physical interiors as disconnected worlds, The Digital Genie approaches both through the lens of immersive experience design.
+              </p>
+              <p>
+                Our digital team engineers visibility, high-ROI paid acquisition, and brand authority. Meanwhile, Bloom Interiors crafts physical sanctuaries, boutique retail spaces, and executive environments that inspire and delight.
+              </p>
             </div>
-            <div className="about-story__img-grid fade-in-right">
-              <img src={heroImg} alt="Nikkyspade creative workspace" className="about-story__img about-story__img--main" />
-              <img src={bloomHeroImg} alt="Interior design work" className="about-story__img about-story__img--accent" />
+
+            <div className="about-story__cards fade-in-right">
+              <div className="about-story__card">
+                <TrendingUp size={24} className="text-dg-blue" />
+                <h4>The Digital Discipline</h4>
+                <p>Data-backed marketing funnels, Meta advertising, and content systems that drive scalable revenue.</p>
+              </div>
+              <div className="about-story__card">
+                <HomeIcon size={24} className="text-bloom" />
+                <h4>The Interior Discipline</h4>
+                <p>Architectural spatial layouts, organic texture layering, and turnkey procurement for living and working.</p>
+              </div>
+              <div className="about-story__card">
+                <Sparkles size={24} className="text-dg-green" />
+                <h4>The Unified Synergy</h4>
+                <p>Cohesive brand leadership ensuring seamless execution whether in the digital market or the physical room.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* ====== TWO DISCIPLINES COMPARISON ====== */}
+      <section className="about-disciplines section section--slate" id="about-disciplines">
+        <div className="container">
+          <div className="section-header--center fade-in">
+            <span className="tag">Disciplines Overview</span>
+            <h2>Two specialized divisions under one roof</h2>
+            <p>Each discipline operates with its own distinct methodology, tools, and dedicated design language.</p>
+          </div>
+
+          <div className="grid-2 about-disciplines__grid">
+            {/* DIGITAL */}
+            <div className="about-disc-card about-disc-card--digital fade-in-left">
+              <div className="about-disc-card__img-wrap">
+                <img src={nikkytalesHeroImg} alt="Digital Marketing" className="about-disc-card__img" />
+              </div>
+              <div className="about-disc-card__body">
+                <div className="about-disc-card__tag">
+                  <DigitalGenieMark size={20} />
+                  <span>Digital Division</span>
+                </div>
+                <h3>The Digital Genie</h3>
+                <p>
+                  Your brand's strategic growth engine: Meta advertising, content strategy, ghostwriting, and virtual support that convert audiences into loyal clients.
+                </p>
+                <ul className="about-disc-card__list">
+                  {['Digital & Growth Strategy', 'Social Media Management', 'Meta Ads Campaigns', 'Content Ghostwriting', 'Digital Support'].map((item) => (
+                    <li key={item}><CheckCircle size={14} className="text-dg-blue" /> {item}</li>
+                  ))}
+                </ul>
+                <Link to="/digital" className="btn btn-digital" style={{ marginTop: '20px' }}>
+                  Explore Digital <ArrowRight size={15} />
+                </Link>
+              </div>
+            </div>
+
+            {/* BLOOM */}
+            <div className="about-disc-card about-disc-card--bloom fade-in-right">
+              <div className="about-disc-card__img-wrap">
+                <img src={bloomHeroImg} alt="Interior Design" className="about-disc-card__img" />
+              </div>
+              <div className="about-disc-card__body">
+                <div className="about-disc-card__tag">
+                  <BloomMark size={20} color="#98755B" />
+                  <span>Interior Division</span>
+                </div>
+                <h3 className="font-editorial">Bloom Interiors</h3>
+                <p>
+                  Creating beautiful, intentional spaces for residential and commercial clients. Every project begins with your story and ends with a space that feels like home.
+                </p>
+                <ul className="about-disc-card__list">
+                  {['Residential & Commercial Design', 'Space Planning & Layout', 'Furniture Sourcing', 'Styling & Decor', 'Turnkey Project Execution'].map((item) => (
+                    <li key={item}><CheckCircle size={14} className="text-bloom" /> {item}</li>
+                  ))}
+                </ul>
+                <Link to="/bloom" className="btn btn-bloom" style={{ marginTop: '20px' }}>
+                  Explore Bloom Interiors <ArrowRight size={15} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== CORE VALUES ====== */}
       <section className="about-values section" id="about-values">
         <div className="container">
           <div className="section-header--center fade-in">
-            <h2>What drives everything I do</h2>
+            <span className="tag">Guiding Principles</span>
+            <h2>Our core values</h2>
+            <p>The shared commitments that guide every digital campaign and spatial transformation.</p>
           </div>
-          <div className="grid-3">
-            {VALUES.map((v, i) => (
-              <div className="about-value-card fade-in" key={v.title} style={{ transitionDelay: `${i * 0.1}s` }}>
+
+          <div className="grid-3 about-values__grid">
+            {VALUES.map((v, idx) => (
+              <div className="about-value-card fade-in" key={v.title} style={{ transitionDelay: `${idx * 0.1}s` }}>
                 <div className="about-value-card__icon">{v.icon}</div>
-                <h3>{v.title}</h3>
+                <h4>{v.title}</h4>
                 <p>{v.desc}</p>
               </div>
             ))}
@@ -98,60 +240,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* DUAL EXPERTISE */}
-      <section className="about-dual section section--sand" id="about-dual">
+      {/* ====== TIMELINE ====== */}
+      <section className="about-timeline section section--slate" id="about-timeline">
         <div className="container">
           <div className="section-header--center fade-in">
-            <h2>Two brands. One creative vision.</h2>
-            <p>Rather than choosing between digital strategy and design, I mastered both. Each informs the other, making my work richer and more impactful.</p>
+            <span className="tag">Our Journey</span>
+            <h2>Milestones that shaped our house</h2>
           </div>
-          <div className="about-dual__grid">
-            <div className="about-dual__card fade-in-left" id="about-nikkytales-card">
-              <div className="about-dual__card-img-wrap">
-                <img src={nikkytalesHeroImg} alt="NikkyTales Digital Marketing" className="about-dual__card-img" />
-              </div>
-              <div className="about-dual__card-content">
-                <span className="badge badge--digital">Digital Marketing</span>
-                <h3>NikkyTales</h3>
-                <p>Your brand's digital home: social media management, paid ads, content strategy, and ghostwriting that converts audiences into loyal communities and paying clients.</p>
-                <ul className="about-dual__list">
-                  {['Content Strategy', 'Social Media Management', 'Meta Ads Campaigns', 'Caption Ghostwriting', 'Analytics & Reporting'].map(item => (
-                    <li key={item}><CheckCircle size={14} /> {item}</li>
-                  ))}
-                </ul>
-                <Link to="/nikkytales" className="btn btn-primary" style={{ marginTop: '24px' }} id="about-nikkytales-btn">Explore NikkyTales <ArrowRight size={15} /></Link>
-              </div>
-            </div>
 
-            <div className="about-dual__card fade-in-right" id="about-bloom-card">
-              <div className="about-dual__card-img-wrap">
-                <img src={bloomHeroImg} alt="The Bloom Interiors" className="about-dual__card-img" />
-              </div>
-              <div className="about-dual__card-content">
-                <span className="badge">Interior Design</span>
-                <h3>The Bloom Interiors</h3>
-                <p>Creating beautiful, intentional spaces for residential and commercial clients. Every project begins with your story and ends with a space that truly feels like home.</p>
-                <ul className="about-dual__list">
-                  {['Residential & Commercial Design', 'Space Planning & Layout', 'Furniture Sourcing', 'Styling & Decor', 'Project Management'].map(item => (
-                    <li key={item}><CheckCircle size={14} /> {item}</li>
-                  ))}
-                </ul>
-                <Link to="/bloom-interiors" className="btn btn-primary" style={{ marginTop: '24px' }} id="about-bloom-btn">Explore Bloom Interiors <ArrowRight size={15} /></Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TIMELINE */}
-      <section className="about-timeline section section--cream-light" id="about-timeline">
-        <div className="container">
-          <div className="section-header--center fade-in">
-            <h2>Milestones that shaped me</h2>
-          </div>
           <div className="about-timeline__track">
-            {TIMELINE.map((item, i) => (
-              <div className={`about-timeline__item fade-in`} key={item.year} style={{ transitionDelay: `${i * 0.12}s` }}>
+            {TIMELINE.map((item, idx) => (
+              <div className="about-timeline__item fade-in" key={item.year} style={{ transitionDelay: `${idx * 0.1}s` }}>
                 <div className="about-timeline__year">{item.year}</div>
                 <div className="about-timeline__dot" />
                 <div className="about-timeline__content">
@@ -164,14 +263,23 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="home-cta" id="about-cta">
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ color: 'var(--cream)' }} className="fade-in">Ready to work together?</h2>
-          <p style={{ color: 'var(--sand)', maxWidth: '520px', margin: '20px auto 40px' }} className="fade-in">Let's talk about your goals, whether it's growing your brand or designing your dream space.</p>
-          <Link to="/contact" className="btn btn-light" id="about-cta-btn">Book a Free Consultation <ArrowRight size={16} /></Link>
+      {/* ====== CTA ====== */}
+      <section className="about-cta section section--dark" id="about-final-cta">
+        <div className="container">
+          <div className="about-cta__inner fade-in">
+            <h2>Ready to work with our creative house?</h2>
+            <p>Let's collaborate on scaling your brand's digital presence or curating your dream space.</p>
+            <div className="about-cta__actions">
+              <Link to="/contact?service=digital" className="btn btn-digital">
+                Inquire Digital Growth <ArrowRight size={15} />
+              </Link>
+              <Link to="/contact?service=interior" className="btn btn-outline-white">
+                Inquire Interior Design <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

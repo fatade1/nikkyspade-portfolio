@@ -1,18 +1,35 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp, Home as HomeIcon, Share2, Layout, Sparkles, CheckCircle, Star } from 'lucide-react';
-import heroImg from '../assets/images/hero_portrait.png';
-import aboutImg from '../assets/images/about_portrait.png';
+import {
+  ArrowRight,
+  TrendingUp,
+  Share2,
+  Sparkles,
+  BarChart2,
+  Home as HomeIcon,
+  Palette,
+  Package,
+  Layers,
+  CheckCircle,
+  ArrowUpRight
+} from 'lucide-react';
+import { DigitalGenieMark, BloomMark } from '../components/Logos';
+
+// Project Images
 import bloomHeroImg from '../assets/images/bloom_hero.png';
 import nikkytalesHeroImg from '../assets/images/nikkytales_hero.png';
-import livingRoomImg from '../assets/images/living_room.png';
+import metaAdsImg from '../assets/images/meta_ads_screenshot.png';
+import pageRecoveryImg from '../assets/images/page_recovery_screenshot.png';
+import brandConsultationImg from '../assets/images/brand_consultation_screenshot.png';
+
+// Reviews Images
 import reviewChat1 from '../assets/images/review_chat_1.jpg';
 import reviewChat2 from '../assets/images/review_chat_2.jpg';
 import reviewChat3 from '../assets/images/review_chat_3.jpg';
 import reviewChat4 from '../assets/images/review_chat_4.jpg';
+
 import '../styles/home.css';
 
-/* Intersection Observer hook for scroll animation */
 function useScrollFade() {
   useEffect(() => {
     const els = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
@@ -25,300 +42,466 @@ function useScrollFade() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     );
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 }
 
-const DIGITAL_SERVICES = [
-  { icon: <Share2 size={22} />, title: 'Social Media Management', desc: 'Strategy, content calendars, engagement growth, and community management across platforms.' },
-  { icon: <TrendingUp size={22} />, title: 'Paid Advertising', desc: 'Targeted Meta Ads campaigns that drive real results: awareness, leads, and conversions.' },
-  { icon: <Layout size={22} />, title: 'Content Strategy', desc: 'Storytelling-driven content that builds authority, grows audiences, and converts.' },
+const DIGITAL_PILLARS = [
+  {
+    icon: <BarChart2 size={24} />,
+    title: 'Digital Strategy',
+    desc: 'Bespoke marketing architecture, brand positioning, and structured growth roadmaps that turn vision into measurable market traction.',
+  },
+  {
+    icon: <Share2 size={24} />,
+    title: 'Content & Social',
+    desc: 'High-converting storytelling, authority-building content calendars, and active community management that transforms audiences into buyers.',
+  },
+  {
+    icon: <TrendingUp size={24} />,
+    title: 'Paid Growth',
+    desc: 'Precision Meta Ads (Instagram & Facebook) funnels engineered for profitable acquisition, retargeting, and scalable revenue returns.',
+  },
+  {
+    icon: <Layers size={24} />,
+    title: 'Digital Support',
+    desc: 'Virtual business assistance and operational execution to free founders up to scale without digital bottlenecks.',
+  },
 ];
 
-const INTERIOR_SERVICES = [
-  { icon: <HomeIcon size={22} />, title: 'Residential Design', desc: 'Transforming living rooms, bedrooms, and entire homes into beautiful, functional spaces.' },
-  { icon: <Sparkles size={22} />, title: 'Space Planning & Styling', desc: 'Thoughtful layout and styling that maximises every inch while staying aesthetically cohesive.' },
-  { icon: <CheckCircle size={22} />, title: 'Furnishing & Execution', desc: 'Sourcing, procurement, and hands-on execution from concept to final reveal.' },
+const BLOOM_HIGHLIGHTS = [
+  {
+    icon: <HomeIcon size={24} />,
+    title: 'Residential & Commercial Design',
+    desc: 'End-to-end spatial transformations: full homes, living rooms, boutique stores, and executive offices tailored to living and working.',
+  },
+  {
+    icon: <Palette size={24} />,
+    title: 'Space Planning & Styling',
+    desc: 'Mastery over spatial balance, custom lighting, tactile materials, and organic palettes to maximize light, flow, and emotion.',
+  },
+  {
+    icon: <Package size={24} />,
+    title: 'Sourcing & Project Execution',
+    desc: 'Turnkey procurement, bespoke furniture fabrication, and on-site oversight from conceptual sketch to the final reveal.',
+  },
 ];
 
-const PORTFOLIO_ITEMS = [
-  { img: '/images/portfolio/bungalow/img_1.png', cat: 'Scratch to Finish', title: '4-Bedroom Bungalow Interior', desc: 'Complete interior layout, custom styling, and procurement for a spacious modern home.', result: 'Full Home' },
-  { img: '/images/portfolio/flat/img_1.png', cat: 'Living & Bed', title: '2-Bedroom Flat Redesign', desc: 'Serene contemporary space optimization and aesthetic styling for cozy comfort.', result: 'Living & Bed' },
-  { img: '/images/portfolio/hairstore/img_1.png', cat: 'Renovation', title: 'Hair Store Renovation', desc: 'Full retail renovation and furnishing including custom shelving, custom finishes, and lighting.', result: 'Renovation' },
+const WORK_ITEMS = [
+  {
+    id: 'meta-ads',
+    division: 'digital',
+    tag: 'Meta Ads & Scaling',
+    title: 'E-Commerce Growth & ROAS Scaling',
+    desc: 'Engineered a conversion-focused paid acquisition funnel generating a 3.8x Return on Ad Spend and +140% monthly revenue growth.',
+    img: metaAdsImg,
+    metric: '3.8x ROAS / +140% Revenue',
+    link: '/digital',
+  },
+  {
+    id: 'bungalow',
+    division: 'interior',
+    tag: 'Scratch to Finish',
+    title: '4-Bedroom Bungalow Interior',
+    desc: 'Complete turnkey transformation for a modern bungalow featuring bespoke carpentry, atmospheric layered lighting, and custom furnishings.',
+    img: '/images/portfolio/bungalow/img_1.png',
+    metric: 'Full Home Transformation',
+    link: '/bloom',
+  },
+  {
+    id: 'page-recovery',
+    division: 'digital',
+    tag: 'Page Recovery',
+    title: 'Instagram Asset Recovery & Reach Rebound',
+    desc: 'Direct security and Meta recovery for a disabled primary business account, followed by a 14-day re-engagement campaign restoring 90% reach.',
+    img: pageRecoveryImg,
+    metric: '100% Recovered / +90% Reach',
+    link: '/digital',
+  },
+  {
+    id: 'flat',
+    division: 'interior',
+    tag: 'Living & Bedroom',
+    title: '2-Bedroom Contemporary Flat',
+    desc: 'Comprehensive redesign and space optimization of living room and master suite creating a serene, light-filled modern sanctuary.',
+    img: '/images/portfolio/flat/img_1.png',
+    metric: 'Living & Master Suite',
+    link: '/bloom',
+  },
+  {
+    id: 'consultation',
+    division: 'digital',
+    tag: 'Brand Consultation',
+    title: 'High-Ticket Brand & Content Strategy',
+    desc: 'Strategic overhaul of brand messaging and organic/paid content pillars, boosting qualified inbound lead quality by 65%.',
+    img: brandConsultationImg,
+    metric: '+65% Lead Quality',
+    link: '/digital',
+  },
+  {
+    id: 'hairstore',
+    division: 'interior',
+    tag: 'Commercial Renovation',
+    title: 'Boutique Hair Store Renovation',
+    desc: 'Retail transformation complete with custom display joinery, luxury styling stations, and ambient lighting to elevate in-store client experience.',
+    img: '/images/portfolio/hairstore/img_1.png',
+    metric: 'Full Commercial Overhaul',
+    link: '/bloom',
+  },
 ];
 
-const TESTIMONIALS = [
-  { text: 'NikkyTales completely transformed how I show up online. My engagement tripled in just 6 weeks and I started getting real inquiries from dream clients.', name: 'Amaka O.', role: 'Business Coach', init: 'A' },
-  { text: 'The Bloom Interiors gave me the living room I always dreamed of. Every detail was handled with such care and elegance, totally exceeding expectations.', name: 'Chidi B.', role: 'Homeowner', init: 'C' },
-  { text: 'She understands brands deeply. My product launch was a massive success thanks to her strategy and the incredible content she created.', name: 'Funmi A.', role: 'Beauty Brand Founder', init: 'F' },
+const REVIEWS = [
+  { img: reviewChat1, alt: 'Client Review 1' },
+  { img: reviewChat2, alt: 'Client Review 2' },
+  { img: reviewChat3, alt: 'Client Review 3' },
+  { img: reviewChat4, alt: 'Client Review 4' },
 ];
 
 export default function Home() {
   useScrollFade();
+  const [filter, setFilter] = useState('ALL');
+
+  const filteredWork = WORK_ITEMS.filter((item) => {
+    if (filter === 'DIGITAL') return item.division === 'digital';
+    if (filter === 'INTERIORS') return item.division === 'interior';
+    return true;
+  });
 
   return (
     <main>
-      {/* ====== HERO ====== */}
-      <section className="hero" id="home-hero">
-        <div className="hero__content">
-          <div className="hero__eyebrow">
-            <span className="hero__eyebrow-dot">Creative Entrepreneur</span>
-            <span>✦</span>
-            <span>Digital · Interiors</span>
-          </div>
+      {/* ====== SECTION 1: HERO ====== */}
+      <section className="home-hero" id="home-hero">
+        <div className="container">
+          <div className="home-hero__inner">
+            <div className="home-hero__content fade-in">
+              <div className="home-hero__badge">
+                <DigitalGenieMark size={20} />
+                <span>Creative Growth & Design House</span>
+              </div>
 
-          <h1 className="hero__title">
-            Building brands online and{' '}
-            <em>transforming spaces</em>{' '}
-            beautifully.
-          </h1>
+              <h1 className="home-hero__title">
+                We turn ideas into <em>growth</em> and spaces into <em>experiences.</em>
+              </h1>
 
-          <p className="hero__sub">
-            I'm Nikkyspade, helping brands grow digitally while creating beautiful, functional spaces that inspire and delight.
-          </p>
+              <p className="home-hero__subtitle">
+                The Digital Genie is a unified creative house operating across high-impact digital strategy and luxury interior transformations through Bloom Interiors.
+              </p>
 
-          <div className="hero__ctas">
-            <Link to="/nikkytales" className="btn btn-primary" id="hero-digital-cta">
-              Explore Digital Services <ArrowRight size={16} />
-            </Link>
-            <Link to="/bloom-interiors" className="btn btn-outline" id="hero-interior-cta">
-              Explore Interior Services
-            </Link>
-          </div>
+              <div className="home-hero__actions">
+                <Link to="/digital" className="btn btn-digital" id="hero-explore-digital-btn">
+                  Explore Digital <ArrowRight size={16} />
+                </Link>
+                <Link to="/bloom" className="btn btn-outline-bloom" id="hero-explore-bloom-btn">
+                  Explore Bloom Interiors <ArrowRight size={16} />
+                </Link>
+              </div>
 
-          <div className="hero__stats">
-            <div>
-              <div className="hero__stat-num">50+</div>
-              <div className="hero__stat-label">Clients Served</div>
+              <div className="home-hero__stats">
+                <div className="home-hero__stat-item">
+                  <span className="home-hero__stat-num">50+</span>
+                  <span className="home-hero__stat-lbl">Businesses & Spaces Scaled</span>
+                </div>
+                <div className="home-hero__stat-divider" />
+                <div className="home-hero__stat-item">
+                  <span className="home-hero__stat-num">3.8x</span>
+                  <span className="home-hero__stat-lbl">Average Digital ROAS</span>
+                </div>
+                <div className="home-hero__stat-divider" />
+                <div className="home-hero__stat-item">
+                  <span className="home-hero__stat-num">100%</span>
+                  <span className="home-hero__stat-lbl">Turnkey Execution</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="hero__stat-num">2</div>
-              <div className="hero__stat-label">Expert Brands</div>
-            </div>
-            <div>
-              <div className="hero__stat-num">99%</div>
-              <div className="hero__stat-label">Satisfaction Rate</div>
-            </div>
           </div>
-        </div>
-
-        <div className="hero__visual">
-          <img src={heroImg} alt="Nikkyspade - Creative Entrepreneur" className="hero__image" />
-          <div className="hero__image-overlay" />
-        </div>
-
-        <div className="hero__scroll-hint">
-          <span>Scroll</span>
-          <div className="hero__scroll-line" />
         </div>
       </section>
 
-      {/* ====== INTRO ====== */}
-      <section className="intro section" id="home-intro">
+      {/* ====== SECTION 2: TWO DISCIPLINES, ONE CREATIVE HOUSE ====== */}
+      <section className="home-disciplines section" id="two-disciplines">
         <div className="container">
-          <div className="intro__inner">
-            <div className="intro__text fade-in-left">
-              <h2>Where digital strategy meets design excellence</h2>
-              <div className="divider" />
-              <p>
-                I'm a multi-disciplinary creative entrepreneur with a passion for two things: growing powerful brands online and transforming physical spaces into breathtaking environments.
-              </p>
-              <p>
-                Through <strong>NikkyTales</strong>, I help businesses and personal brands achieve measurable growth through strategic social media management and paid advertising. Through <strong>The Bloom Interiors</strong>, I craft residential and commercial spaces that are as functional as they are beautiful.
-              </p>
-              <div className="intro__features">
-                {['Content Strategy', 'Meta Ads', 'Interior Design', 'Space Planning', 'Brand Growth', 'Project Execution'].map(f => (
-                  <div className="intro__feature" key={f}>
-                    <div className="intro__feature-icon"><CheckCircle size={15} /></div>
-                    {f}
-                  </div>
-                ))}
+          <div className="section-header--center fade-in">
+            <span className="tag">Dual Brand Architecture</span>
+            <h2>Two disciplines. One creative house.</h2>
+            <p>
+              Rather than scattering your growth and environment across disconnected agencies, we provide unified excellence across digital visibility and physical atmosphere.
+            </p>
+          </div>
+
+          <div className="home-disciplines__grid">
+            {/* CARD 1: DIGITAL GENIE */}
+            <div className="discipline-card discipline-card--digital fade-in-left">
+              <div className="discipline-card__header">
+                <div className="discipline-card__badge discipline-card__badge--digital">
+                  <DigitalGenieMark size={24} />
+                  <span>Digital Division</span>
+                </div>
+                <h3>The Digital Genie</h3>
+                <p>
+                  Digital strategy, marketing, content systems, and paid advertising solutions engineered to make businesses significantly more visible, authoritative, and profitable.
+                </p>
               </div>
-              <Link to="/about" className="btn btn-outline" style={{ marginTop: '36px' }} id="home-about-link">
-                Learn My Story <ArrowRight size={16} />
+
+              <div className="discipline-card__img-wrap">
+                <img
+                  src={nikkytalesHeroImg}
+                  alt="The Digital Genie Strategy"
+                  className="discipline-card__img"
+                />
+                <div className="discipline-card__overlay discipline-card__overlay--digital" />
+              </div>
+
+              <div className="discipline-card__footer">
+                <ul className="discipline-card__list">
+                  <li><CheckCircle size={15} /> Digital & Growth Strategy</li>
+                  <li><CheckCircle size={15} /> Content & Social Media Management</li>
+                  <li><CheckCircle size={15} /> Targeted Meta Ads (Instagram/FB)</li>
+                </ul>
+                <Link to="/digital" className="btn btn-digital" id="card-digital-btn">
+                  Explore Digital Division <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+
+            {/* CARD 2: BLOOM INTERIORS */}
+            <div className="discipline-card discipline-card--bloom fade-in-right">
+              <div className="discipline-card__header">
+                <div className="discipline-card__badge discipline-card__badge--bloom">
+                  <BloomMark size={24} color="#98755B" />
+                  <span>Interior Division</span>
+                </div>
+                <h3>Bloom Interiors</h3>
+                <p>
+                  Thoughtfully designed residential and commercial spaces crafted around how people live, feel, work, and experience their physical environment.
+                </p>
+              </div>
+
+              <div className="discipline-card__img-wrap">
+                <img
+                  src={bloomHeroImg}
+                  alt="Bloom Interiors Design"
+                  className="discipline-card__img"
+                />
+                <div className="discipline-card__overlay discipline-card__overlay--bloom" />
+              </div>
+
+              <div className="discipline-card__footer">
+                <ul className="discipline-card__list">
+                  <li><CheckCircle size={15} /> Residential & Commercial Design</li>
+                  <li><CheckCircle size={15} /> Space Planning & Layout Optimization</li>
+                  <li><CheckCircle size={15} /> Sourcing, Procurement & Execution</li>
+                </ul>
+                <Link to="/bloom" className="btn btn-bloom" id="card-bloom-btn">
+                  Explore Interior Division <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== SECTION 3: DIGITAL GENIE FEATURE ====== */}
+      <section className="home-digital-feature section section--slate" id="digital-feature">
+        <div className="container">
+          <div className="home-feature-header fade-in">
+            <div>
+              <span className="tag tag--digital">The Digital Genie</span>
+              <h2>Digital growth, strategy & visibility</h2>
+              <p>
+                Structured marketing pillars that eliminate guesswork and build sustainable customer acquisition engines.
+              </p>
+            </div>
+            <Link to="/digital" className="btn btn-outline-digital" id="feature-digital-all-btn">
+              Explore All Digital Services <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="grid-4 home-pillars-grid">
+            {DIGITAL_PILLARS.map((p, idx) => (
+              <div className="pillar-card fade-in" key={p.title} style={{ transitionDelay: `${idx * 0.08}s` }}>
+                <div className="pillar-card__icon pillar-card__icon--digital">{p.icon}</div>
+                <h4>{p.title}</h4>
+                <p>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== SECTION 4: BLOOM FEATURE ====== */}
+      <section className="home-bloom-feature section section--sand" id="bloom-feature">
+        <div className="container">
+          <div className="home-feature-header fade-in">
+            <div>
+              <span className="tag tag--bloom">Bloom Interiors</span>
+              <h2>Spaces should feel like you.</h2>
+              <p>
+                Elevating homes and commercial environments with warm aesthetics, functional spatial zoning, and effortless luxury.
+              </p>
+            </div>
+            <Link to="/bloom" className="btn btn-outline-bloom" id="feature-bloom-all-btn">
+              Explore Bloom Interiors <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="grid-3 home-bloom-grid">
+            {BLOOM_HIGHLIGHTS.map((h, idx) => (
+              <div className="bloom-feature-card fade-in" key={h.title} style={{ transitionDelay: `${idx * 0.1}s` }}>
+                <div className="bloom-feature-card__icon">{h.icon}</div>
+                <h4>{h.title}</h4>
+                <p>{h.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== SECTION 5: SELECTED WORK (UNIFIED PORTFOLIO) ====== */}
+      <section className="home-work section" id="selected-work">
+        <div className="container">
+          <div className="section-header--center fade-in">
+            <span className="tag">Unified Portfolio</span>
+            <h2>Selected work & transformations</h2>
+            <p>Explore case studies from our digital campaigns and interior design transformations.</p>
+
+            {/* Filter Controls */}
+            <div className="home-work__filters">
+              {['ALL', 'DIGITAL', 'INTERIORS'].map((f) => (
+                <button
+                  key={f}
+                  className={`home-work__filter-btn${filter === f ? ' active' : ''}`}
+                  onClick={() => setFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid-3 home-work__grid">
+            {filteredWork.map((item, idx) => (
+              <div className="work-preview-card fade-in" key={item.id} style={{ transitionDelay: `${idx * 0.08}s` }}>
+                <div className="work-preview-card__img-wrap">
+                  <img src={item.img} alt={item.title} className="work-preview-card__img" />
+                  <span className={`work-preview-card__badge work-preview-card__badge--${item.division}`}>
+                    {item.tag}
+                  </span>
+                </div>
+                <div className="work-preview-card__body">
+                  <span className="work-preview-card__metric">{item.metric}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                  <Link to={item.link} className="work-preview-card__link">
+                    View Division Work <ArrowUpRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="home-work__cta-wrap fade-in">
+            <Link to="/work" className="btn btn-outline" id="view-full-work-btn">
+              View Complete Portfolio & Gallery <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== SECTION 6: CLIENT REVIEWS MARQUEE ====== */}
+      <section className="home-reviews section section--white" id="client-reviews">
+        <div className="container">
+          <div className="section-header--center fade-in">
+            <span className="tag tag--green">Verified Client Love</span>
+            <h2>What our clients say</h2>
+            <p>Real feedback from business owners and homeowners we've had the pleasure of partnering with.</p>
+          </div>
+        </div>
+
+        {/* Continuous Horizontal Scrolling Marquee */}
+        <div className="reviews-marquee-container fade-in">
+          <div className="reviews-marquee-track">
+            {/* Set 1 */}
+            {REVIEWS.map((r, i) => (
+              <div className="reviews-marquee-card" key={`rev-1-${i}`}>
+                <img src={r.img} alt={r.alt} className="reviews-marquee-img" loading="lazy" />
+              </div>
+            ))}
+            {/* Set 2 (Duplicate for continuous loop) */}
+            {REVIEWS.map((r, i) => (
+              <div className="reviews-marquee-card" key={`rev-2-${i}`}>
+                <img src={r.img} alt={r.alt} className="reviews-marquee-img" loading="lazy" />
+              </div>
+            ))}
+            {/* Set 3 (Buffer) */}
+            {REVIEWS.map((r, i) => (
+              <div className="reviews-marquee-card" key={`rev-3-${i}`}>
+                <img src={r.img} alt={r.alt} className="reviews-marquee-img" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== SECTION 7: ABOUT THE UMBRELLA ====== */}
+      <section className="home-about section section--slate" id="umbrella-about">
+        <div className="container">
+          <div className="home-about__inner">
+            <div className="home-about__content fade-in-left">
+              <span className="tag">Creative Ecosystem</span>
+              <h2>One vision bridging digital growth & physical design</h2>
+              <p>
+                In today's interconnected world, how a brand appears online and how an environment feels in person are two sides of the same coin: **Intentional Experience**.
+              </p>
+              <p>
+                The Digital Genie serves as the umbrella growth house, combining analytical marketing rigor with refined spatial aesthetics to deliver holistic impact for businesses, spaces, and lifestyle founders.
+              </p>
+              <Link to="/about" className="btn btn-outline" style={{ marginTop: '16px' }} id="home-about-link-btn">
+                Read Our Story & Approach <ArrowRight size={16} />
               </Link>
             </div>
 
-            <div className="intro__image-wrap fade-in-right">
-              <img src={aboutImg} alt="Nikkyspade in her workspace" className="intro__image-main" />
-              <img src={livingRoomImg} alt="Bloom Interiors work" className="intro__image-accent" />
-              <div className="intro__badge-card">
-                <div className="intro__badge-card-num">3+</div>
-                <div className="intro__badge-card-label">Years of Excellence</div>
+            <div className="home-about__cards fade-in-right">
+              <div className="home-about__card">
+                <Sparkles size={24} className="text-dg-blue" />
+                <h4>Strategic Clarity</h4>
+                <p>Every digital campaign and interior layout starts with deep diagnosis and purpose.</p>
+              </div>
+              <div className="home-about__card">
+                <Palette size={24} className="text-bloom" />
+                <h4>Refined Aesthetics</h4>
+                <p>Visually arresting design that converts audiences and elevates daily living.</p>
+              </div>
+              <div className="home-about__card">
+                <CheckCircle size={24} className="text-dg-green" />
+                <h4>Turnkey Execution</h4>
+                <p>From initial blueprint to campaign launch or final furniture styling, we manage it all.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====== BRAND SPLIT ====== */}
-      <section className="brands section" id="home-brands">
+      {/* ====== SECTION 8: FINAL DUAL CTA ====== */}
+      <section className="home-cta section section--dark" id="home-final-cta">
         <div className="container">
-          <div className="section-header--center fade-in">
-            <h2>Two brands. One vision.</h2>
-            <p>Each brand serves a distinct purpose, but both share the same commitment to excellence, creativity, and real results.</p>
-          </div>
+          <div className="home-cta__inner fade-in">
+            <span className="tag" style={{ background: 'rgba(255,255,255,0.1)', color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}>
+              Let's Collaborate
+            </span>
+            <h2>Have an idea? Let's bring it to life.</h2>
+            <p>Choose your pathway to get started with our digital growth team or interior design consultants.</p>
 
-          <div className="brands__grid">
-            <Link to="/nikkytales" className="brand-card fade-in-left" id="brand-nikkytales-card">
-              <img src={nikkytalesHeroImg} alt="NikkyTales Digital Marketing" className="brand-card__image" />
-              <div className="brand-card__overlay" />
-              <div className="brand-card__content">
-                <div className="brand-card__pill">Digital Marketing</div>
-                <h3 className="brand-card__title">NikkyTales</h3>
-                <p className="brand-card__desc">Strategic social media management, paid advertising, and content creation that grows your brand and drives real results.</p>
-                <div className="brand-card__link">
-                  Explore NikkyTales
-                  <div className="brand-card__link-arrow"><ArrowRight size={14} /></div>
-                </div>
-              </div>
-            </Link>
-
-            <Link to="/bloom-interiors" className="brand-card fade-in-right" id="brand-bloom-card">
-              <img src={bloomHeroImg} alt="The Bloom Interiors" className="brand-card__image" />
-              <div className="brand-card__overlay" />
-              <div className="brand-card__content">
-                <div className="brand-card__pill">Interior Design</div>
-                <h3 className="brand-card__title">The Bloom Interiors</h3>
-                <p className="brand-card__desc">Transforming residential and commercial spaces into beautiful, functional environments that reflect your personality and purpose.</p>
-                <div className="brand-card__link">
-                  Explore Bloom Interiors
-                  <div className="brand-card__link-arrow"><ArrowRight size={14} /></div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== SERVICES PREVIEW ====== */}
-      <section className="services-preview section" id="home-services">
-        <div className="container">
-          <div className="section-header fade-in" style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'16px' }}>
-            <div>
-              <h2>Services that make an impact</h2>
+            <div className="home-cta__actions">
+              <Link to="/contact?service=digital" className="btn btn-digital" id="cta-digital-growth-btn">
+                I Need Digital Growth <ArrowRight size={16} />
+              </Link>
+              <Link to="/contact?service=interior" className="btn btn-outline-white" id="cta-interior-design-btn">
+                I Need Interior Design <ArrowRight size={16} />
+              </Link>
             </div>
-            <Link to="/portfolio" className="btn btn-outline" id="home-view-all-btn">View All Work</Link>
-          </div>
-
-          <div style={{ marginBottom: '12px' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--light-brown)', marginBottom: '20px', letterSpacing: '0.05em' }}>NikkyTales: Digital</h3>
-            <div className="services-grid fade-in">
-              {DIGITAL_SERVICES.map(s => (
-                <div className="service-card" key={s.title}>
-                  <div className="service-card__icon">{s.icon}</div>
-                  <h3 className="service-card__title">{s.title}</h3>
-                  <p className="service-card__desc">{s.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginTop: '48px' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--light-brown)', marginBottom: '20px', letterSpacing: '0.05em' }}>The Bloom Interiors</h3>
-            <div className="services-grid fade-in">
-              {INTERIOR_SERVICES.map(s => (
-                <div className="service-card" key={s.title}>
-                  <div className="service-card__icon">{s.icon}</div>
-                  <h3 className="service-card__title">{s.title}</h3>
-                  <p className="service-card__desc">{s.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== PORTFOLIO PREVIEW ====== */}
-      <section className="portfolio-preview section section--sand" id="home-portfolio">
-        <div className="container">
-          <div className="section-header--center fade-in">
-            <h2>Projects I'm proud of</h2>
-            <p>A glimpse into the interior transformations I've delivered for clients.</p>
-          </div>
-
-          <div className="portfolio-preview__scroll">
-            {PORTFOLIO_ITEMS.map((item, i) => (
-              <div className={`portfolio-card fade-in`} key={item.title} style={{ transitionDelay: `${i * 0.1}s` }}>
-                <div className="portfolio-card__img-wrap">
-                  <img src={item.img} alt={item.title} className="portfolio-card__img" loading="lazy" />
-                </div>
-                <div className="portfolio-card__body">
-                  <div className="portfolio-card__cat">{item.cat}</div>
-                  <h3 className="portfolio-card__title">{item.title}</h3>
-                  <p className="portfolio-card__desc">{item.desc}</p>
-                  {item.result && <div className="portfolio-card__result"><TrendingUp size={13} />{item.result}</div>}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <Link to="/portfolio" className="btn btn-primary" id="home-portfolio-cta">View Full Portfolio <ArrowRight size={16} /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== TESTIMONIALS ====== */}
-      <section className="testimonials-preview section" id="home-testimonials">
-        <div className="container">
-          <div className="section-header--center fade-in">
-            <h2>What my clients say</h2>
-            <p>Real words from real people who trusted me with their brands and spaces.</p>
-          </div>
-
-          <div className="testimonials-grid">
-            {TESTIMONIALS.map((t, i) => (
-              <div className="testimonial-card fade-in" key={t.name} style={{ transitionDelay: `${i * 0.12}s` }}>
-                <div className="testimonial-card__stars">
-                  {[...Array(5)].map((_, k) => <Star key={k} size={14} fill="currentColor" />)}
-                </div>
-                <div className="testimonial-card__quote">"</div>
-                <p className="testimonial-card__text">{t.text}</p>
-                <div className="testimonial-card__author">
-                  <div className="testimonial-card__avatar">{t.init}</div>
-                  <div>
-                    <div className="testimonial-card__author-name">{t.name}</div>
-                    <div className="testimonial-card__author-role">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Continuous scrolling chat reviews */}
-          <div className="reviews-scroller-wrap fade-in">
-            <div className="reviews-scroller">
-              <div className="reviews-scroller-track">
-                <div className="reviews-scroller-group">
-                  <div className="scroller-item"><img src={reviewChat1} alt="WhatsApp Review 1" /></div>
-                  <div className="scroller-item"><img src={reviewChat2} alt="WhatsApp Review 2" /></div>
-                  <div className="scroller-item"><img src={reviewChat3} alt="WhatsApp Review 3" /></div>
-                  <div className="scroller-item"><img src={reviewChat4} alt="WhatsApp Review 4" /></div>
-                </div>
-                <div className="reviews-scroller-group" aria-hidden="true">
-                  <div className="scroller-item"><img src={reviewChat1} alt="WhatsApp Review 1" /></div>
-                  <div className="scroller-item"><img src={reviewChat2} alt="WhatsApp Review 2" /></div>
-                  <div className="scroller-item"><img src={reviewChat3} alt="WhatsApp Review 3" /></div>
-                  <div className="scroller-item"><img src={reviewChat4} alt="WhatsApp Review 4" /></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== CTA ====== */}
-      <section className="home-cta" id="home-cta-section">
-        <div className="container">
-          <h2 className="fade-in">Let's create something extraordinary together</h2>
-          <p className="fade-in">Whether you want to grow your brand online or transform your space, I'm here to make it happen beautifully.</p>
-          <div className="home-cta__btns fade-in">
-            <Link to="/contact" className="btn btn-light" id="home-cta-contact">Book a Consultation</Link>
-            <Link to="/portfolio" className="btn btn-outline-light" id="home-cta-portfolio">View My Work</Link>
           </div>
         </div>
       </section>

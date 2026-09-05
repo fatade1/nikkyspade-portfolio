@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { DigitalGenieLogo } from './Logos';
 import '../styles/navbar.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isDigital = location.pathname.startsWith('/digital');
+  const isBloom = location.pathname.startsWith('/bloom');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -22,58 +27,114 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
-        {/* Logo */}
-        <Link to="/" className="navbar__logo" onClick={close}>
-          <span className="navbar__logo-name">Nikkyspade</span>
-          <span className="navbar__logo-tagline">Creative Entrepreneur</span>
-        </Link>
+      <header className={`navbar${scrolled ? ' scrolled' : ''}${isDigital ? ' navbar--digital' : ''}${isBloom ? ' navbar--bloom' : ''}`}>
+        <div className="navbar__container">
+          {/* Logo */}
+          <Link to="/" className="navbar__logo" onClick={close} aria-label="The Digital Genie Home">
+            <DigitalGenieLogo size={36} showSubtitle={true} />
+          </Link>
 
-        {/* Desktop Links */}
-        <ul className="navbar__links">
-          <li><NavLink to="/" end className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}>Home</NavLink></li>
-          <li><NavLink to="/about" className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}>About</NavLink></li>          {/* Brands Dropdown */}
-          <li className="navbar__dropdown">
-            <span className="navbar__link navbar__dropdown-trigger">
-              My Brands <ChevronDown size={14} />
-            </span>
-            <div className="navbar__dropdown-menu">
-              <Link to="/nikkytales" className="navbar__dropdown-item">
-                NikkyTales
-                <span>Digital Marketing</span>
-              </Link>
-              <Link to="/bloom-interiors" className="navbar__dropdown-item">
-                The Bloom Interiors
-                <span>Interior Design</span>
-              </Link>
-            </div>
-          </li>
+          {/* Desktop Links */}
+          <nav className="navbar__nav">
+            <ul className="navbar__links">
+              <li>
+                <NavLink
+                  to="/digital"
+                  className={({ isActive }) => `navbar__link navbar__link--digital${isActive ? ' active' : ''}`}
+                >
+                  Digital
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/bloom"
+                  className={({ isActive }) => `navbar__link navbar__link--bloom${isActive ? ' active' : ''}`}
+                >
+                  Bloom Interiors
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/work"
+                  className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}
+                >
+                  Work
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}
+                >
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}
+                >
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
 
-          <li><NavLink to="/portfolio" className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}>Portfolio</NavLink></li>
-          <li>
-            <NavLink to="/contact" className="navbar__link navbar__cta">Book a Consultation</NavLink>
-          </li>
-        </ul>
+            {/* Primary CTA */}
+            <Link
+              to="/contact"
+              className={`btn navbar__cta ${isBloom ? 'btn-bloom' : 'btn-digital'}`}
+              id="nav-cta-btn"
+            >
+              Let's Work Together <ArrowRight size={15} />
+            </Link>
+          </nav>
 
-        {/* Hamburger */}
-        <button
-          className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          id="navbar-hamburger-btn"
-        >
-          <span /><span /><span />
-        </button>
-      </nav>
+          {/* Mobile Hamburger */}
+          <button
+            className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            id="navbar-hamburger-btn"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <div className={`navbar__mobile${menuOpen ? ' open' : ''}`}>
-        <NavLink to="/" end className="navbar__mobile-link" onClick={close}>Home</NavLink>
-        <NavLink to="/about" className="navbar__mobile-link" onClick={close}>About</NavLink>
-        <NavLink to="/nikkytales" className="navbar__mobile-link" onClick={close}>NikkyTales</NavLink>
-        <NavLink to="/bloom-interiors" className="navbar__mobile-link" onClick={close}>Bloom Interiors</NavLink>
-        <NavLink to="/portfolio" className="navbar__mobile-link" onClick={close}>Portfolio</NavLink>
-        <Link to="/contact" className="btn btn-primary navbar__mobile-cta" onClick={close}>Book a Consultation</Link>
+        <div className="navbar__mobile-header">
+          <Link to="/" onClick={close}>
+            <DigitalGenieLogo size={32} showSubtitle={false} />
+          </Link>
+        </div>
+
+        <nav className="navbar__mobile-nav">
+          <NavLink to="/" end className="navbar__mobile-link" onClick={close}>Home</NavLink>
+          <NavLink to="/digital" className="navbar__mobile-link navbar__mobile-link--digital" onClick={close}>
+            Digital
+            <span className="navbar__mobile-badge">Growth & Strategy</span>
+          </NavLink>
+          <NavLink to="/bloom" className="navbar__mobile-link navbar__mobile-link--bloom" onClick={close}>
+            Bloom Interiors
+            <span className="navbar__mobile-badge">Interior Design</span>
+          </NavLink>
+          <NavLink to="/work" className="navbar__mobile-link" onClick={close}>Work</NavLink>
+          <NavLink to="/about" className="navbar__mobile-link" onClick={close}>About</NavLink>
+          <NavLink to="/contact" className="navbar__mobile-link" onClick={close}>Contact</NavLink>
+        </nav>
+
+        <div className="navbar__mobile-footer">
+          <Link
+            to="/contact"
+            className="btn btn-digital navbar__mobile-cta"
+            onClick={close}
+          >
+            Let's Work Together <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
     </>
   );
